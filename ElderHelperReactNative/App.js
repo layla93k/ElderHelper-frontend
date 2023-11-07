@@ -4,6 +4,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import JobsMap from './JobsMap';
+import SingleJob from './SingleJob';
 
 
 function HomeScreen({ navigation }) {
@@ -24,6 +25,7 @@ export default function App() {
       <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="JobsMap" component={JobsMap} />
+      <Stack.Screen name="SingleJob" component={SingleJob} />
       </Stack.Navigator> 
     </NavigationContainer>
   );
