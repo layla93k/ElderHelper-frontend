@@ -25,7 +25,7 @@ export default function App() {
       <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="JobsMap" component={JobsMap} />
-      <Stack.Screen name="SingleJob" component={SingleJob} />
+        <Stack.Screen name="SingleJob" component={SingleJob} />
       </Stack.Navigator> 
     </NavigationContainer>
   );

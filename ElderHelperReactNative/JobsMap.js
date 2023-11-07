@@ -1,5 +1,5 @@
-import { Platform, Text, View, StyleSheet } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Geojson, Marker, Callout } from 'react-native-maps';
+import { Text, View, StyleSheet } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Geojson, Marker, Callout, Polygon } from 'react-native-maps';
 import ManchesterPostcodes from './assets/ManchesterPostcodes.json';
 import * as Location from 'expo-location';
 import { useState, useEffect } from 'react';
@@ -32,63 +32,52 @@ export default function JobsMap() {
   } else if (location) {
     text = `latitude:${JSON.stringify(location.latitude)}, longitude:${JSON.stringify(location.longitude)}`;
   }
-const handlePress = (title) => {
-  setPress(title)
-  console.log(title)
-}
-
+    const handlePress = (title) => {    
+        setPress(title)
+        console.log(title)
+    }
 const [press, setPress] = useState('')
-
+   
     return (
-        <View style={styles.view}>
-            <Text style={styles.text}>{text}</Text>
-      < JobCard  press={press} setPress={setPress}/>
-        <MapView style={styles.map} provider={PROVIDER_GOOGLE} 
+    <View style={styles.view}>
+    <Text style={styles.text}>{text}</Text>
+    <JobCard  press={press} setPress={setPress}/>
+    <MapView 
+        initialRegion={{
+            latitude: 53.4808,
+            longitude: -2.2926,
+            latitudeDelta: 0.43,
+            longitudeDelta: 0.34
+        }}
+        style={styles.map}
+        provider={PROVIDER_GOOGLE} 
         showsUserLocation={true} 
         onUserLocationChange={(event)=> {setLocation(event.nativeEvent.coordinate)}}
-        >
-        <Geojson geojson={ManchesterPostcodes} />
-        <Marker
-    coordinate={{latitude: 53.48295, longitude: -2.24108}}
-    title={'M1'}
-    description={'M1 postcode district'}
-    onPress= {(event) => { 
-        handlePress(event._dispatchInstances.memoizedProps.title)
-       }}/>
-
-<Marker coordinate={{latitude: 53.48305, longitude: -2.24409}}
-    title={'M2'}
-    description={'M2 postcode district'}
-    onPress= {(event) => { 
-        handlePress(event._dispatchInstances.memoizedProps.title)
-       }}>
-    </Marker>
-<Marker
-    coordinate={{latitude: 53.49266, longitude: -2.25106}}
-    title={'M3'}
-    description={'M3 postcode district'}
-    onPress= {(event) => { 
-        handlePress(event._dispatchInstances.memoizedProps.title)
-       }}
-/>
-<Marker
-    coordinate={{latitude: 53.48405, longitude: -2.23206}}
-    title={'M4'}
-    description={'M4 postcode district'}
-    onPress= {(event) => { 
-        handlePress(event._dispatchInstances.memoizedProps.title)
-       }}
-/>
-<Marker
-    coordinate={{latitude: 53.47357, longitude: -2.28111}}
-    title={'M5'}
-    description={'M5 postcode district'}
-    onPress= {(event) => { 
-        handlePress(event._dispatchInstances.memoizedProps.title)
-       }}
-/>
-        </MapView>    
-        </View>
+    >
+    {
+        ManchesterPostcodes.features.map((area) => {
+            const coordinates = area.geometry.coordinates[0].map(([longitude, latitude]) => ({
+                latitude,
+                longitude,
+            }));
+            return (
+                <Polygon
+                    tappable
+                    key={area.properties.name}
+                    coordinates={coordinates}
+                    fillColor="rgba(0, 200, 0, 0.5)"
+                    strokeColor="rgba(0,0,0,0.5)"
+                    strokeWidth={2}
+                    onPress= {(event) => { 
+                        handlePress(event._targetInst.return.key)
+                    }}
+                />
+            )
+        })
+    }
+    
+    </MapView>    
+    </View>
     )
 }
 
