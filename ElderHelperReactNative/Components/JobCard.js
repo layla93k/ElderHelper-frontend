@@ -1,7 +1,12 @@
-import { Text, View, Button, TouchableOpacity, StyleSheet, use } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { Text, View, Button, TouchableOpacity, StyleSheet } from "react-native";
+import SingleJob from "./SingleJob";
+import { useNavigation } from "@react-navigation/native";
+
+
 export default function JobCard({ press, setPress}) {
   const navigation = useNavigation();
+
+
   const jobs = [
     {
       job_title: "Companionship",
