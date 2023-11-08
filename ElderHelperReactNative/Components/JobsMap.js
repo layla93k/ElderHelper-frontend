@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Geojson, Marker, Callout, Polygon } from 'react-native-maps';
-import ManchesterPostcodes from './assets/ManchesterPostcodes.json';
+import ManchesterPostcodes from '../assets/ManchesterPostcodes.json';
 import * as Location from 'expo-location';
 import { useState, useEffect } from 'react';
 import JobCard from './JobCard';

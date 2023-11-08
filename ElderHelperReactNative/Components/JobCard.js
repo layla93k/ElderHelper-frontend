@@ -1,7 +1,5 @@
 import { Text, View, Button, TouchableOpacity, StyleSheet, use } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import SingleJobs from './SingleJob'
-import App from './App'
 export default function JobCard({ press, setPress}) {
   const navigation = useNavigation();
   const jobs = [
