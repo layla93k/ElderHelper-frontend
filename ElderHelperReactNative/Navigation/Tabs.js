@@ -1,22 +1,15 @@
-import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-//import Tabs from "./Navigation/Tabs";
-import { UserContext } from "./UserContext";
-
-import Home from "./Components/Home";
-import ChatRooms from "./Components/ChatRooms";
-import Profile from "./Components/Profile";
-import PostJob from "./Components/PostJob";
-import SingleJob from "./Components/SingleJob";
-import JobsMap from "./Components/JobsMap";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import Home from "../Components/Home";
+import Login from "../Components/Login";
+import ChatRooms from "../Components/ChatRooms";
+import JobsMap from "../Components/JobsMap";
+import Profile from "../Components/Profile";
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
 
-function TabNavigator() {
+const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -41,7 +34,7 @@ function TabNavigator() {
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
-                source={require("./assets/Home.png")}
+                source={require("../assets/Home.png")}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -58,15 +51,15 @@ function TabNavigator() {
           ),
         }}
       />
+
       <Tab.Screen
         name="Task Board"
-        component={StackNavigator}
+        component={JobsMap}
         options={{
-          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
-                source={require("./assets/Jobs.png")}
+                source={require("../assets/Jobs.png")}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -83,30 +76,7 @@ function TabNavigator() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Post New Job"
-        component={PostJob}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <Image
-                source={require("./assets/PostJob.png")}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
-              >
-                Post Job
-              </Text>
-            </View>
-          ),
-        }}
-      />
+
       <Tab.Screen
         name="ChatRooms"
         component={ChatRooms}
@@ -114,7 +84,7 @@ function TabNavigator() {
           tabBarIcon: ({ focused }) => (
             <View>
               <Image
-                source={require("./assets/Chat.png")}
+                source={require("../assets/Chat.png")}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -125,12 +95,13 @@ function TabNavigator() {
                 style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
               >
                 {" "}
-                ChatRooms{" "}
+                Chat{" "}
               </Text>
             </View>
           ),
         }}
       />
+
       <Tab.Screen
         name="Profile"
         component={Profile}
@@ -138,7 +109,7 @@ function TabNavigator() {
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
-                source={require("./assets/Profile.png")}
+                source={require("../assets/Profile.png")}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -157,24 +128,7 @@ function TabNavigator() {
       />
     </Tab.Navigator>
   );
-}
-function StackNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="JobsMap" component={JobsMap} />
-      <Stack.Screen name="SignleJob" component={SingleJob} />
-    </Stack.Navigator>
-  );
-}
-export default function App() {
-  return (
-    <NavigationContainer>
-      <UserContext>
-        <TabNavigator />
-      </UserContext>
-    </NavigationContainer>
-  );
-}
+};
 
 const styles = StyleSheet.create({
   shadow: {
@@ -188,3 +142,5 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
+
+export default Tabs;
