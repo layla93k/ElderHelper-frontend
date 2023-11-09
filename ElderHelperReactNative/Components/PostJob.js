@@ -5,7 +5,7 @@ import { getFormatedDate } from 'react-native-modern-datepicker'
  
 export default PostJob = () => {
     const today = new Date();
-    const tomorrow = getFormatedDate(today.setDate(today.getDate()+ 1))
+    const tomorrow = getFormatedDate(today.setDate(today.getDate()+ 1), 'DD/MM/YYYY hh:mm')
     const [open, setOpen] = useState(false)
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
@@ -30,14 +30,14 @@ export default PostJob = () => {
     return(
         <View style = {styles.form}>
         <View style = {styles.question}>
-        <Text>Job Title</Text>
+        <Text style = {styles.labels}>Job Title</Text>
         <TextInput placeholder = 'e.g. Dog walking' style = {styles.textInput}onChangeText = {(value) => setTitle(value)}></TextInput>
         </View>
         <View style = {styles.question}>
-        <Text>Job Description</Text>
+        <Text style = {styles.labels}>Job Description</Text>
         <TextInput placeholder = 'e.g. I need a daily dog walker for my two dogs' style = {styles.bigTextInput} onChangeText = {(value) => setDesc(value)}></TextInput></View>
         <View>
-            <Text style = {styles.expDate}>Deadline: {expiryDate}</Text>
+            <Text style = {styles.labels}>Deadline: {expiryDate}</Text>
             <Button title = 'Select deadline' onPress = {handleOnPress}/>
             <Modal animationType='slide'
             transparent={true}
@@ -65,26 +65,29 @@ export default PostJob = () => {
 const styles = StyleSheet.create({
     form: {
         flex: 1,
-        alignItems: 'left',
-        justifyContent: 'space-around',
-        width: 400,
-        marginLeft: 10,
-        marginRight: 10,
+        padding: 10,
+        alignItems: "left",
+    },
+    labels: {
+        fontWeight: 'bold',
+        paddingTop: 30,
+        paddingBottom: 10,
     },
     textInput: {
+        padding: 10,
         height: 40,
         borderWidth: 1,
         borderColor: '#000000',
+        backgroundColor: '#ffffff',
         borderRadius: 5,
     },
     bigTextInput: {
         height: 150,
+        padding: 10,
         borderWidth: 1,
         borderColor: '#000000',
+        backgroundColor: '#ffffff',
         borderRadius: 5,
-    },
-    question: {
-        height: 100,
     },
     expDate: {
         paddingTop: 30,

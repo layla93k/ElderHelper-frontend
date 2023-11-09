@@ -84,10 +84,9 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Post New Job"
+        name="Post Job"
         component={PostJob}
         options={{
-          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
@@ -125,7 +124,7 @@ function TabNavigator() {
                 style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
               >
                 {" "}
-                ChatRooms{" "}
+                Chat{" "}
               </Text>
             </View>
           ),
