@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./Components/Home";
 import Chat from "./Components/Chat";
 import Profile from "./Components/Profile";
-
+import PostJob from './Components/PostJob'
 import SingleJob from './Components/SingleJob'
 import JobsMap from "./Components/JobsMap";
 
@@ -61,11 +61,27 @@ function TabNavigator() {
               width: 25,
               height: 25,
             }}
-            
-            
             />
     <Text
     style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> Task Board </Text>
+          </View>  
+        ),
+      }}
+    />
+    <Tab.Screen name="Post New Job" component={PostJob} options={{
+        headerShown: false,
+        tabBarIcon: ({focused}) => (
+          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+            <Image 
+            source={require('./assets/PostJob.png')}
+            resizeMode="contain"
+            style={{
+              width: 25,
+              height: 25,
+            }}
+            />
+    <Text
+    style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}>Post Job</Text>
           </View>  
         ),
       }}
@@ -97,8 +113,6 @@ function TabNavigator() {
         width: 25,
         height: 25,
       }}
-      
-    
       />
   <Text
   style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> Profile </Text>
