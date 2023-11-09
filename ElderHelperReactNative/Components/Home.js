@@ -22,4 +22,3 @@ export default function Home({ navigation }) {
   });
   
 
-  //  <Button title='JobsMap' onPress={() => navigation.jumpTo('JobsMap')} />
