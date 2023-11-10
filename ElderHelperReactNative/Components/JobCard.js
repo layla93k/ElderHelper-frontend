@@ -1,5 +1,7 @@
 import React from "react";
-import { Text, View, Button, StyleSheet, ScrollView } from "react-native";
+import { Text, View, Button, StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function JobCard({ press, setPress, navigation }) {
   const jobs = [
@@ -223,6 +225,7 @@ export default function JobCard({ press, setPress, navigation }) {
   const filteredJobs = jobs.filter((job) => job.postcode === press);
 
   return (
+    <GestureHandlerRootView>
     <ScrollView
       horizontal
       snapToInterval={140}
@@ -230,6 +233,7 @@ export default function JobCard({ press, setPress, navigation }) {
       scrollEventThrottle={1}
       contentContainerStyle={styles.endPadding}
     >
+  
       {filteredJobs.length === 0 ? (
         press ? (
           <Text style={styles.noJobsText}> No jobs in {press}</Text>
@@ -238,7 +242,9 @@ export default function JobCard({ press, setPress, navigation }) {
         )
       ) : (
         filteredJobs.map((job, index) => (
-          <View key={index} style={styles.card}>
+          <View key={index} 
+          style={styles.card}
+          >
             <Text style={styles.title}>{job.job_title}</Text>
             <Text style={styles.description} numberOfLines={3}>
               {job.job_desc}
@@ -252,6 +258,7 @@ export default function JobCard({ press, setPress, navigation }) {
         ))
       )}
     </ScrollView>
+    </GestureHandlerRootView>
   );
 }
 
@@ -286,13 +293,13 @@ const styles = StyleSheet.create({
   description: {
     textAlign: "center",
   },
-  cardContainer: {
-    flexWrap: "wrap",
-    bottom: 0,
-    marginBottom: 120,
-    position: "absolute",
-    flexDirection: "row",
-  },
+  // cardContainer: {
+  //   flexWrap: "wrap",
+  //   bottom: 0,
+  //   marginBottom: 120,
+  //   position: "absolute",
+  //   flexDirection: "row",
+  // },
   endPadding: {
     padding: 10,
     paddingRight: 16,

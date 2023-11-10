@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Button } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Polygon } from "react-native-maps";
 import ManchesterPostcodes from "../assets/ManchesterPostcodes.json";
 import * as Location from "expo-location";
@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SingleJob from "./SingleJob";
+import List from "./List";
 const Stack = createNativeStackNavigator();
 
 function Map({ navigation }) {
@@ -48,7 +49,10 @@ function Map({ navigation }) {
   };
 
   return (
+
     <View style={styles.view}>
+      <Button title='List' onPress={()=> navigation.navigate('List')} />
+       <Button disabled={true} title='Map' onPress={()=> navigation.navigate('Map')}/>
       <JobCard press={press} setPress={setPress} navigation={navigation} />
       <MapView
         initialRegion={{
@@ -99,8 +103,9 @@ function Map({ navigation }) {
 export default function MapStackNav() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Map" component={Map} />
-      <Stack.Screen name="Task" component={SingleJob} />
+      <Stack.Screen name="Map" component={Map} options={{headerShown: false}} />
+      <Stack.Screen name="SingleJob" component={SingleJob} />
+      <Stack.Screen name="List" component={List} options={{headerShown: false}} />
     </Stack.Navigator>
   );
 }
