@@ -4,7 +4,11 @@ import { createContext, useState } from "react";
 const UserType = createContext();
 
 const UserContext = ({ children }) => {
-  const [userId, setUserId] = useState("jone");
+  const [userId, setUserId] = useState({
+    first_name: "Chloe",
+    phoneNumber: "00009012345",
+    user_id: 4,
+  });
   return (
     <UserType.Provider value={{ userId, setUserId }}>
       {children}
