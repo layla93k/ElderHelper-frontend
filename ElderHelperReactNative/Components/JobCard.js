@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Button, StyleSheet } from "react-native";
 
 
-export default function JobCard({ press, setPress, navigation}) {
+export default function JobCard({press, setPress, navigation}) {
 
 
   const jobs = [
@@ -232,7 +232,9 @@ export default function JobCard({ press, setPress, navigation}) {
             <View key={index}>
               <Text>{job.job_title}</Text>
               <Text>{job.job_desc}</Text>
-              <Button title='more info' style={styles.button} onPress={() => navigation.navigate('SingleJob')} />
+              <Button title='more info' style={styles.button} onPress={() => {
+                navigation.navigate('Task')
+              }} />
             </View>
           ))
         )

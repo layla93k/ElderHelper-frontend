@@ -1,18 +1,14 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Home from "./Components/Home";
+import TaskBoard from "./Components/TaskBoard";
 import Chat from "./Components/Chat";
 import Profile from "./Components/Profile";
 
-import SingleJob from './Components/SingleJob'
-import JobsMap from "./Components/JobsMap";
-
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator()
 
 function TabNavigator() {
   return (
@@ -50,7 +46,7 @@ function TabNavigator() {
         ),
       }}
     />
-      <Tab.Screen name="Task Board" component={StackNavigator} options={{
+      <Tab.Screen name="Task Board" component={TaskBoard} options={{
         headerShown: false,
         tabBarIcon: ({focused}) => (
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -109,14 +105,7 @@ function TabNavigator() {
     </Tab.Navigator>
   )
 }
-function StackNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="JobsMap" component={JobsMap}/>
-      <Stack.Screen name="SignleJob" component={SingleJob}/>
-    </Stack.Navigator>
-  )
-}
+
 export default function App() {
   return (
     <NavigationContainer>
