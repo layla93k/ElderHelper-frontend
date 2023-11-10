@@ -1,26 +1,38 @@
 import React, {useState} from 'react';
-import {Button, TextInput, Text, View, StyleSheet, Modal} from 'react-native'
+import { postJob } from '../api';
+import {Alert, Button, TextInput, Text, View, StyleSheet, Modal} from 'react-native'
 import DatePicker from 'react-native-modern-datepicker'
 import { getFormatedDate } from 'react-native-modern-datepicker'
  
 export default PostJob = () => {
-    const today = new Date();
-    const tomorrow = getFormatedDate(today.setDate(today.getDate()+ 1), 'DD/MM/YYYY hh:mm')
+    const today = new Date()
+    const tomorrow = getFormatedDate(today.setDate(today.getDate()+ 1))
     const [open, setOpen] = useState(false)
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
     const [expiryDate, setExpiryDate] = useState(tomorrow)
     const [submitMessage, setSubmitMessage] = useState('')
 
-    const handlePost = () => {
-        // postNewJob({
-        //     "job_title": {title},
-        //     "job_desc": {desc},
-        //     "expiry_date": {expiryDate}
-        // job id = auto assigned, posted_date = now, elder_id = user id, postcode = user postcode
-        // })
-        setSubmitMessage(`${title} ${desc} ${expiryDate} posted on ${today}`)
+    const validation = () => {
+        if (!title){
+            Alert.alert('Please add a title.')}
+            else if (!desc){
+            Alert.alert('Please add a description.')}
+        else {postJob({
+            "job_title": title,
+            "job_desc": desc,
+            "posted_date": today,
+            "expiry_date": expiryDate,
+            "elder_id": 2,
+            "helper_id": 1,
+            "postcode": "M12 3AB"
+        }).then((res) => {
+            setSubmitMessage("Job posted successfully!")
+        })
+          .catch((err) => {console.log(err)
+           setSubmitMessage('Error')})
     }
+        }
     
     const handleOnPress = () => {
         setOpen(!open);
@@ -44,7 +56,14 @@ export default PostJob = () => {
             visible={open}>
                 <View style = {styles.centeredView}>
                     <View style = {styles.modalView}>
-                        <DatePicker mode = 'datepicker'
+                        <DatePicker  options={{
+                        textHeaderColor: '#0072BB',
+                        textDefaultColor: '#0072BB',
+                        selectedTextColor: '#0072BB',
+                        mainColor: '#9DD8E7',
+                        textSecondaryColor: '#D6EAEE',
+                        }}
+                        mode = 'calendar'
                         minimumDate={tomorrow}
                         selected={expiryDate}
                         minuteInterval={15}
@@ -54,9 +73,9 @@ export default PostJob = () => {
                     </View>
                 </View>
             </Modal>
-               
               </View>
-        <Button title = 'Post task' onPress={handlePost}/>
+              <View style = {styles.buttons}>
+        <Button title = 'Post job' onPress={validation}/></View>
         <Text>{submitMessage}</Text>
         </View>
     )
@@ -103,5 +122,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 22,
+    },
+    buttons: {
+        paddingTop: 100,
+        paddingBottom: 10,
     }
 })
