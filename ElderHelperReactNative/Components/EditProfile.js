@@ -2,8 +2,6 @@ import React, {useContext, useState} from 'react';
 import {Alert, Button, TextInput, Text, View, StyleSheet, Modal} from 'react-native'
 import { UserType } from '../UserContext';
 
-const Stack = createNativeStackNavigator();
- 
 export default EditProfile = () => {
     const {userId, setUserId} = useContext(UserType)
     const [firstName, setFirstName] = useState('')
