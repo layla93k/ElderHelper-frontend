@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { postJob } from '../api';
 import {Alert, Button, TextInput, Text, View, StyleSheet, Modal} from 'react-native'
 import DatePicker from 'react-native-modern-datepicker'
 import { getFormatedDate } from 'react-native-modern-datepicker'
+import { UserType } from '../UserContext';
  
 export default PostJob = () => {
     const today = new Date()
@@ -12,8 +13,10 @@ export default PostJob = () => {
     const [desc, setDesc] = useState('')
     const [expiryDate, setExpiryDate] = useState(tomorrow)
     const [submitMessage, setSubmitMessage] = useState('')
-
+    const {userId, setUserId} = useContext(UserType)
+    
     const validation = () => {
+        
         if (!title){
             Alert.alert('Please add a title.')}
             else if (!desc){
@@ -23,9 +26,9 @@ export default PostJob = () => {
             "job_desc": desc,
             "posted_date": today,
             "expiry_date": expiryDate,
-            "elder_id": 2,
+            "elder_id": userId.user_id,
             "helper_id": 1,
-            "postcode": "M12 3AB"
+            "postcode": userId.postcode
         }).then((res) => {
             setSubmitMessage("Job posted successfully!")
         })
@@ -66,8 +69,8 @@ export default PostJob = () => {
                         mode = 'calendar'
                         minimumDate={tomorrow}
                         selected={expiryDate}
-                        minuteInterval={15}
-                        onSelectedChange={date => setExpiryDate(date)}
+                        onSelectedChange={
+                            date => setExpiryDate(date)}
                        />
                     <Button title = 'Select Date' onPress = {handleOnPress}/>
                     </View>
