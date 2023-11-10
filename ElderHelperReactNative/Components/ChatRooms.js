@@ -7,13 +7,26 @@ import {
   Button,
   Animated,
 } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
+
 import React from "react";
 import { useState, useEffect } from "react";
 
 const ChatRooms = ({ navigation }) => {
-  const [phoneNumber, setPhoneNumber] = useState("07519123456"); //setting defaults for now
-  const [firstName, setFirstName] = useState("Jone");
-  const [userId, setUserId] = useState("2");
+  const [elderId, setElderId] = useState({
+    first_name: "Chloe",
+    phoneNumber: "00009012345",
+    user_id: 4,
+  });
+
+  const [helperId, setHelperId] = useState({
+    first_name: "Aiden",
+    phoneNumber: "00009012345",
+    user_id: 7,
+  });
+
+  console.log("\n", "elder:", elderId, "\n", "helper:", helperId);
 
   return (
     <View
@@ -41,13 +54,17 @@ const ChatRooms = ({ navigation }) => {
             talk with your elder/helper
           </Text>
         </View>
-
-        <Button
-          title="Back"
-          containerStyle={{ marginTop: 100 }}
-          onPress={() => navigation.goBack()}
-        />
       </KeyboardAvoidingView>
+
+      <View>
+        <Text> Your Chat Rooms</Text>
+      </View>
+
+      <Button
+        title="Back"
+        containerStyle={{ marginTop: 100 }}
+        onPress={() => navigation.goBack()}
+      />
     </View>
   );
 };
