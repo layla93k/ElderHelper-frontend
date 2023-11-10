@@ -14,9 +14,14 @@ export const fetchElderJobs = async () => {
 
 fetchElderJobs();
 
-
 export const postJob = async (newJob) => {
-  return await request.post('/jobs', newJob).then(({ data }) => {
-    return data
-  })
-}
+  return await request.post("/jobs", newJob).then(({ data }) => {
+    return data;
+  });
+};
+
+export const getExistingUser = async (phoneNumber) => {
+  return await request.get(`/users/${phoneNumber}`).then(({ data }) => {
+    return data;
+  });
+};
