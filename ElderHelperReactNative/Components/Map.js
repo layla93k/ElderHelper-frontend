@@ -5,13 +5,14 @@ import ManchesterPostcodes from '../assets/ManchesterPostcodes.json';
 import * as Location from 'expo-location';
 import { useState, useEffect } from 'react';
 import JobCard from './JobCard';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SingleJob from './SingleJob'
+const Stack = createNativeStackNavigator()
 
-
-
-export default function JobsMap() {
+function Map({navigation}) {
  const [errorMsg, setErrorMsg] = useState(null);
  const [location, setLocation] = useState(null);
-   
+ 
  useEffect(() => {
     (async () => {
       
@@ -37,12 +38,11 @@ export default function JobsMap() {
         setPress(title)
         console.log(title)
     }
-const [press, setPress] = useState('')
+    const [press, setPress] = useState('')
    
     return (
     <View style={styles.view}>
-    <Text style={styles.text}>{text}</Text>
-    <JobCard  press={press} setPress={setPress}/>
+            <JobCard press={press} setPress={setPress} navigation={navigation}/>
     <MapView 
         initialRegion={{
             latitude: 53.4808,
@@ -79,6 +79,14 @@ const [press, setPress] = useState('')
     
     </MapView>    
     </View>
+    )
+}
+export default function MapStackNav() {
+    return (
+            <Stack.Navigator>
+                <Stack.Screen name='Map' component={Map} />
+                <Stack.Screen name='Task' component={SingleJob} />
+            </Stack.Navigator>
     )
 }
 

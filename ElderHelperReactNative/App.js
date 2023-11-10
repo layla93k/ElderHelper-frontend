@@ -1,20 +1,19 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 //import Tabs from "./Navigation/Tabs";
 import { UserContext } from "./UserContext";
 
 import Home from "./Components/Home";
-import ChatRooms from "./Components/ChatRooms";
+import TaskBoard from "./Components/TaskBoard";
+import Chat from "./Components/Chat";
 import Profile from "./Components/Profile";
-import PostJob from "./Components/PostJob";
-import SingleJob from "./Components/SingleJob";
-import JobsMap from "./Components/JobsMap";
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+
+import ChatRooms from "./Components/ChatRooms";
 
 function TabNavigator() {
   return (
@@ -30,8 +29,75 @@ function TabNavigator() {
           backgroundColor: "#ffffff",
           boarderRadius: 15,
           height: 90,
-          ...styles.shadow,
-        },
+          ...styles.shadow
+      }    
+    }}
+  >
+    <Tab.Screen name="Home" component={Home} options={{
+        tabBarIcon: ({focused}) => (
+          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+            <Image 
+            source={require('./assets/Home.png')}
+            resizeMode="contain"
+            style={{
+              width: 25,
+              height: 25,
+            }}
+            
+            />
+    <Text
+    style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> Home </Text>
+          </View>  
+        ),
+      }}
+    />
+      <Tab.Screen name="Task Board" component={TaskBoard} options={{
+        headerShown: false,
+        tabBarIcon: ({focused}) => (
+          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+            <Image 
+            source={require('./assets/Jobs.png')}
+            resizeMode="contain"
+            style={{
+              width: 25,
+              height: 25,
+            }}
+            
+            
+            />
+    <Text
+    style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> Task Board </Text>
+          </View>  
+        ),
+      }}
+    />
+    <Tab.Screen name="Chat" component={Chat} options={{
+        tabBarIcon: ({focused}) => (
+          <View>
+            <Image 
+            source={require('./assets/Chat.png')}
+            resizeMode="contain"
+            style={{
+              width: 25,
+              height: 25,
+            }}
+            />
+    <Text
+    style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> Chat </Text>
+          </View>  
+        ),
+      }}
+    />
+    <Tab.Screen name="Profile" component={Profile} options={{
+  tabBarIcon: ({focused}) => (
+    <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <Image 
+      source={require('./assets/Profile.png')}
+      resizeMode="contain"
+      style={{
+        width: 25,
+        height: 25,
+
       }}
     >
       <Tab.Screen
@@ -157,14 +223,7 @@ function TabNavigator() {
     </Tab.Navigator>
   );
 }
-function StackNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="JobsMap" component={JobsMap} />
-      <Stack.Screen name="SignleJob" component={SingleJob} />
-    </Stack.Navigator>
-  );
-}
+
 export default function App() {
   return (
     <NavigationContainer>
