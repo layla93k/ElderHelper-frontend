@@ -8,6 +8,7 @@ const UserContext = ({ children }) => {
     first_name: "Chloe",
     phoneNumber: "00009012345",
     user_id: 4,
+    postcode: 'M9 9II'
   });
   return (
     <UserType.Provider value={{ userId, setUserId }}>

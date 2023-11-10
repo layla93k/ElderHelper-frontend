@@ -8,9 +8,15 @@ const request = axios.create({
 
 export const fetchElderJobs = async () => {
   return await request.get(`/jobs/elder/4`).then(({ data }) => {
-    console.log(data);
     return data;
   });
 };
 
 fetchElderJobs();
+
+
+export const postJob = async (newJob) => {
+  return await request.post('/jobs', newJob).then(({ data }) => {
+    return data
+  })
+}
