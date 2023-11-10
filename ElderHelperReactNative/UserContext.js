@@ -6,9 +6,12 @@ const UserType = createContext();
 const UserContext = ({ children }) => {
   const [userId, setUserId] = useState({
     first_name: "Chloe",
+    surname: "White",
     phoneNumber: "00009012345",
     user_id: 4,
-    postcode: 'M9 9II'
+    postcode: 'M9 9II',
+    avatar_url: "https://example.com/avatars/chloewhite.jpg",
+    profile_msg: "Offering my services for house-sitting."
   });
   return (
     <UserType.Provider value={{ userId, setUserId }}>
