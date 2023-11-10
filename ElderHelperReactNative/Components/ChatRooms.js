@@ -11,7 +11,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext, UserType } from "../UserContext";
 
 const ChatRooms = ({ navigation }) => {
   const [elderId, setElderId] = useState({
@@ -26,7 +27,11 @@ const ChatRooms = ({ navigation }) => {
     user_id: 7,
   });
 
-  console.log("\n", "elder:", elderId, "\n", "helper:", helperId);
+  // console.log("\n", "elder:", elderId, "\n", "helper:", helperId);
+
+  const { userId, setUserId } = useContext(UserType);
+
+  // console.log(userId);
 
   return (
     <View
