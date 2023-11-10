@@ -1,9 +1,12 @@
 import React, {useContext, useState} from 'react';
 import { View, Text, StyleSheet, Image, Button, Alert } from 'react-native';
 import { UserType } from '../UserContext';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import EditProfile from './EditProfile';
 
+const Stack = createNativeStackNavigator();
 
-export default function Profile() {
+function Profile({navigation}) {
 
 const {userId, setUserId} = useContext(UserType)
 
@@ -26,10 +29,19 @@ const {userId, setUserId} = useContext(UserType)
     <Text style = {styles.info}>{userId.profile_msg}</Text>
     </View>
     <View style = {styles.button}>
-    <Button title = 'Update Profile'></Button>
+    <Button title = 'Update Profile' onPress={() => navigation.navigate('Edit Profile')}></Button>
     </View>
 </View>
 )}
+
+export default function ProfileNav() {
+return (
+    <Stack.Navigator>
+        <Stack.Screen name ='My Profile' component = {Profile} options = {{headerShown: false}}/>
+        <Stack.Screen name='Edit Profile' component = {EditProfile} options = {{headerShown: false}}/>
+    </Stack.Navigator>
+)
+}
 
 const styles = StyleSheet.create({
     profilePicView: { 
