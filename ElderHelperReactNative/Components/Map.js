@@ -38,15 +38,9 @@ function Map({ navigation }) {
   }
   const handlePress = (title) => {
     setPress(title);
-    console.log(title);
   };
   const [press, setPress] = useState("");
 
-  const [selectedPolygon, setSelectedPolygon] = useState(null);
-
-  const handlePolygonPress = (polygonId) => {
-    setSelectedPolygon(polygonId);
-  };
 
   return (
 
@@ -82,15 +76,14 @@ function Map({ navigation }) {
               key={area.properties.name}
               coordinates={coordinates}
               fillColor={
-                selectedPolygon === area.properties.name
-                  ? "#0072BB"
-                  : "rgba(0, 200, 0 ,0.5"
+                press === area.properties.name
+                  ? "rgba(0, 200, 0 ,0.4)"
+                  : "rgba(118, 118, 118, 0.4)"
               }
-              strokeColor="rgba(0,0,0,0.5)"
+              strokeColor="rgba(0,0,0,1)"
               strokeWidth={2}
               onPress={(event) => {
-                handlePress(event._targetInst.return.key);
-                handlePolygonPress(area.properties.name);
+                handlePress(area.properties.name);
               }}
             />
           );
