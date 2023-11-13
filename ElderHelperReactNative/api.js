@@ -15,14 +15,6 @@ export const fetchJobs = async () => {
   }
 };
 
-// export const fetchChatMessages = async () => {
-//   return await request.get(`/api/messages/4?chatroom=1`).then(({ data }) => {
-//     return data;
-//   });
-// };
-
-// fetchElderJobs();
-
 export const postJob = async (newJob) => {
   return await request.post("/jobs", newJob).then(({ data }) => {
     return data;
@@ -35,6 +27,26 @@ export const getExistingUser = async (phoneNumber) => {
   });
 };
 
+export const getChatMessages = async (user_id, chatroom) => {
+  console.log("herelo");
+  return await request
+    .get(`/messages/${user_id}?chatroom=${chatroom}`)
+    .then(({ data }) => {
+      console.log(data);
+      return data;
+    });
+};
+
+// getChatMessages(4, 1);
+
+export const getJobsByElderId = async (elder_id) => {
+  return await request.get(`/jobs/elder/${elder_id}`).then(({ data }) => {
+    console.log(data);
+    return data;
+  });
+};
+
+getJobsByElderId(4);
 export const postNewUser = async (newUser) => {
   console.log("here");
   return await request.post("/users", newUser).then(({ data }) => {
