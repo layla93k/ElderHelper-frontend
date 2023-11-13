@@ -15,7 +15,7 @@ const {userId, setUserId} = useContext(UserType)
     <View style = {styles.profilePicView}>
         <Image style = {styles.profilePic}
         source={{
-          uri: 'https://images.unsplash.com/photo-1682687220801-eef408f95d71?q=80&w=2787',
+          uri: userId.avatar_url,
         }}></Image></View>
         <View style = {styles.nameView}>
          <Text style = {styles.name}>{userId.first_name} {userId.surname}</Text>

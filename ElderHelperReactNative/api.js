@@ -14,9 +14,14 @@ export const fetchElderJobs = async () => {
 
 fetchElderJobs();
 
-
 export const postJob = async (newJob) => {
   return await request.post('/jobs', newJob).then(({ data }) => {
+    return data
+  })
+}
+
+export const updateProfile = async (newProfile, user_id) => {
+  return await request.patch(`/users/${user_id}`, newProfile).then(({ data }) => {
     return data
   })
 }
