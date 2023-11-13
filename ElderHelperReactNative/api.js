@@ -6,14 +6,20 @@ const request = axios.create({
   baseURL: "https://elderhelper.onrender.com/api",
 });
 
-export const fetchJobs = async () => {
+export const fetchJobs = async (press) => {
   try {
-    const response = await request.get(`/jobs`);
+    const response = await request.get(`/jobs`, {
+      params: {
+        postcode: press,
+      }
+    })
     return response.data;
   } catch (error) {
     console.log(error);
   }
 };
+
+fetchJobs()
 
 export const postJob = async (newJob) => {
   return await request.post("/jobs", newJob).then(({ data }) => {
@@ -46,7 +52,7 @@ export const getJobsByElderId = async (elder_id) => {
   });
 };
 
-getJobsByElderId(4);
+// getJobsByElderId(4);
 export const postNewUser = async (newUser) => {
   console.log("here");
   return await request.post("/users", newUser).then(({ data }) => {
