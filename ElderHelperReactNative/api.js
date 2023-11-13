@@ -6,9 +6,13 @@ const request = axios.create({
   baseURL: "https://elderhelper.onrender.com/api",
 });
 
-export const fetchJobs = async () => {
+export const fetchJobs = async (press) => {
   try {
-    const response = await request.get(`/jobs`);
+    const response = await request.get(`/jobs`, {
+      params: {
+        postcode: press,
+      }
+    })
     return response.data;
   } catch (error) {
     console.log(error);

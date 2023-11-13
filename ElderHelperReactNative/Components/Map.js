@@ -13,6 +13,7 @@ const Stack = createNativeStackNavigator();
 function Map({ navigation }) {
   const [errorMsg, setErrorMsg] = useState(null);
   const [location, setLocation] = useState(null);
+  const [press, setPress] = useState(undefined);
 
   useEffect(() => {
     (async () => {
@@ -39,7 +40,7 @@ function Map({ navigation }) {
   const handlePress = (title) => {
     setPress(title);
   };
-  const [press, setPress] = useState("");
+
 
 
   return (
@@ -47,7 +48,6 @@ function Map({ navigation }) {
     <View style={styles.view}>
       <Button title='List' onPress={()=> navigation.navigate('List')} />
        <Button disabled={true} title='Map' onPress={()=> navigation.navigate('Map')}/>
-      <JobCard press={press} setPress={setPress} navigation={navigation} />
       <MapView
         initialRegion={{
           latitude: 53.4808,
@@ -89,7 +89,7 @@ function Map({ navigation }) {
           );
         })}
       </MapView>
-      <JobCard press={press} setPress={setPress} />
+      <JobCard press={press} setPress={setPress} navigation={navigation} />
     </View>
   );
 }
