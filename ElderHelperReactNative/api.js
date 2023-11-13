@@ -27,6 +27,11 @@ export const postJob = async (newJob) => {
   })
 }
 
+export const getJobsUsers = async () => {
+  return await request.get(`/jobs/users`).then(({ data }) => {
+    return data;
+  })
+}
 export const updateProfile = async (newProfile, user_id) => {
   return await request.patch(`/users/${user_id}`, newProfile).then(({ data }) => {
     return data
@@ -43,8 +48,6 @@ export const getChatMessages = async (user_id, chatroom) => {
     });
 };
 
-// getChatMessages(4, 1);
-
 export const getJobsByElderId = async (elder_id) => {
   return await request.get(`/jobs/elder/${elder_id}`).then(({ data }) => {
     console.log(data);
@@ -52,7 +55,6 @@ export const getJobsByElderId = async (elder_id) => {
   });
 };
 
-getJobsByElderId(4);
 export const postNewUser = async (newUser) => {
   console.log("here");
   return await request.post("/users", newUser).then(({ data }) => {
