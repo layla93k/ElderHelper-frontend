@@ -20,3 +20,9 @@ export const postJob = async (newJob) => {
     return data
   })
 }
+
+export const getJobsUsers = async () => {
+  return await request.get(`/jobs/users`).then(({ data }) => {
+    return data;
+  })
+}
