@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-
-export default function JobCard({press, setPress, navigation}) {
-
-
+export default function JobCard({ press, setPress, navigation }) {
   const jobs = [
     {
       job_title: "Companionship",
@@ -15,7 +14,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 1,
       helper_id: 101,
       status_id: 2,
-      postcode: 'M1'
+      postcode: "M1",
     },
     {
       job_title: "Grocery Shopping",
@@ -25,17 +24,18 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 2,
       helper_id: 102,
       status_id: 1,
-      postcode: 'M23'
+      postcode: "M23",
     },
     {
       job_title: "Medication Reminder",
-      job_desc: "Require assistance in taking my medications at the right times.",
+      job_desc:
+        "Require assistance in taking my medications at the right times.",
       posted_date: "2023-11-10",
       expiry_date: "2023-11-25",
       elder_id: 3,
       helper_id: 103,
       status_id: 3,
-      postcode: 'M41'
+      postcode: "M41",
     },
     {
       job_title: "Transportation Assistance",
@@ -46,7 +46,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 4,
       helper_id: 104,
       status_id: 2,
-      postcode: 'M30'
+      postcode: "M30",
     },
     {
       job_title: "Meal Preparation",
@@ -56,17 +56,18 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 5,
       helper_id: 105,
       status_id: 1,
-      postcode: 'M23'
+      postcode: "M30",
     },
     {
       job_title: "House Cleaning",
-      job_desc: "Seeking assistance with general house cleaning and organizing.",
+      job_desc:
+        "Seeking assistance with general house cleaning and organizing.",
       posted_date: "2023-11-16",
       expiry_date: "2023-11-30",
       elder_id: 6,
       helper_id: 106,
       status_id: 4,
-      postcode: 'M6'
+      postcode: "M30",
     },
     {
       job_title: "Outdoor Activities",
@@ -77,7 +78,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 7,
       helper_id: 107,
       status_id: 1,
-      postcode: 'M7'
+      postcode: "M30",
     },
     {
       job_title: "Pet Care",
@@ -88,7 +89,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 8,
       helper_id: 108,
       status_id: 2,
-      postcode: 'M32'
+      postcode: "M32",
     },
     {
       job_title: "Tech Support",
@@ -99,7 +100,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 9,
       helper_id: 109,
       status_id: 3,
-      postcode: 'M8'
+      postcode: "M8",
     },
     {
       job_title: "Yard Maintenance",
@@ -109,7 +110,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 10,
       helper_id: 110,
       status_id: 4,
-      postcode: 'M33'
+      postcode: "M33",
     },
     {
       job_title: "Reading Assistance",
@@ -120,7 +121,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 11,
       helper_id: 111,
       status_id: 2,
-      postcode: 'M11'
+      postcode: "M11",
     },
     {
       job_title: "Transportation Assistance",
@@ -131,7 +132,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 12,
       helper_id: 112,
       status_id: 1,
-      postcode: 'M40'
+      postcode: "M40",
     },
     {
       job_title: "Art and Crafts",
@@ -142,7 +143,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 13,
       helper_id: 113,
       status_id: 3,
-      postcode: 'M46'
+      postcode: "M46",
     },
     {
       job_title: "Tech Support",
@@ -153,7 +154,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 14,
       helper_id: 114,
       status_id: 2,
-      postcode: 'M24'
+      postcode: "M30",
     },
     {
       job_title: "Exercise Partner",
@@ -164,7 +165,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 15,
       helper_id: 115,
       status_id: 4,
-      postcode: 'M27'
+      postcode: "M27",
     },
     {
       job_title: "Music Appreciation",
@@ -174,17 +175,18 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 16,
       helper_id: 116,
       status_id: 1,
-      postcode: 'M32'
+      postcode: "M32",
     },
     {
       job_title: "Language Tutoring",
-      job_desc: "Need help learning a new language or improving language skills.",
+      job_desc:
+        "Need help learning a new language or improving language skills.",
       posted_date: "2023-12-06",
       expiry_date: "2023-12-25",
       elder_id: 17,
       helper_id: 117,
       status_id: 3,
-      postcode: 'M15'
+      postcode: "M15",
     },
     {
       job_title: "Transportation Assistance",
@@ -195,7 +197,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 18,
       helper_id: 118,
       status_id: 2,
-      postcode: 'M26'
+      postcode: "M26",
     },
     {
       job_title: "Gardening",
@@ -206,7 +208,7 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 19,
       helper_id: 119,
       status_id: 4,
-      postcode: 'M19'
+      postcode: "M19",
     },
     {
       job_title: "Movie Buddy",
@@ -217,39 +219,93 @@ export default function JobCard({press, setPress, navigation}) {
       elder_id: 20,
       helper_id: 120,
       status_id: 1,
-      postcode: 'M22'
+      postcode: "M22",
     },
-  ]
-  const filteredJobs = jobs.filter((job) => job.postcode === press)
-  
+  ];
+  const filteredJobs = jobs.filter((job) => job.postcode === press);
+
   return (
-    <View>
-      {
-        filteredJobs.length === 0 ? (
-           press ? <Text> No jobs in { press }</Text> : <Text>Choose an area</Text>
+    <GestureHandlerRootView>
+    <ScrollView
+      horizontal
+      snapToInterval={140}
+      style={styles.cardContainer}
+      scrollEventThrottle={1}
+      contentContainerStyle={styles.endPadding}
+    >
+  
+      {filteredJobs.length === 0 ? (
+        press ? (
+          <Text style={styles.noJobsText}> No jobs in {press}</Text>
         ) : (
-          filteredJobs.map((job, index) => (
-            <View key={index}>
-              <Text>{job.job_title}</Text>
-              <Text>{job.job_desc}</Text>
-              <Button title='more info' style={styles.button} onPress={() => {
-                navigation.navigate('Task')
-              }} />
-            </View>
-          ))
+          <Text>Choose an area</Text>
         )
-        }     
-        <Button title={'reset'} onPress={()=> {setPress('')}}/>
-     </View>
-    )
-} 
+      ) : (
+        filteredJobs.map((job, index) => (
+          <View key={index} 
+          style={styles.card}
+          >
+            <Text style={styles.title}>{job.job_title}</Text>
+            <Text style={styles.description} numberOfLines={3}>
+              {job.job_desc}
+            </Text>
+            <Button
+              title="more info"
+              style={styles.button}
+              onPress={() => navigation.navigate("SingleJob")}
+            />
+          </View>
+        ))
+      )}
+    </ScrollView>
+    </GestureHandlerRootView>
+  );
+}
 
 const styles = StyleSheet.create({
-    button: {
-      alignItems: 'center',
-      backgroundColor: '#DDDDDD',
-      padding: 10,
-    },
+  button: {
+    alignSelf: "center",
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+  },
+  card: {
+    height: 160,
+    width: 140,
+    backgroundColor: "#D6EAEE",
+    borderColor: "#0072BB",
+    borderWidth: 3,
+    borderStyle: "solid",
+    borderRadius: 20,
+    margin: 3,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    flex: 1,
+    justifyContent: "center",
+  },
+  title: {
+    marginTop: 18,
+    fontSize: 18,
+    fontWeight: "bold",
+    paddingBottom: 3,
+    textAlign: "center",
+  },
+  description: {
+    textAlign: "center",
+  },
+  // cardContainer: {
+  //   flexWrap: "wrap",
+  //   bottom: 0,
+  //   marginBottom: 120,
+  //   position: "absolute",
+  //   flexDirection: "row",
+  // },
+  endPadding: {
+    padding: 10,
+    paddingRight: 16,
+  },
+  noJobsText: {
+    fontSize: 30,
+    backgroundColor: "#D6EAEE",
+  },
 });
-
-
