@@ -6,13 +6,26 @@ const request = axios.create({
   baseURL: "https://elderhelper.onrender.com/api",
 });
 
-export const fetchElderJobs = async () => {
-  return await request.get(`/jobs/elder/4`).then(({ data }) => {
+export const fetchJobs = async () => {
+  try {
+    const response = await request.get(`/jobs`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postJob = async (newJob) => {
+  return await request.post("/jobs", newJob).then(({ data }) => {
     return data;
   });
 };
 
-fetchElderJobs();
+export const getExistingUser = async (phoneNumber) => {
+  return await request.get(`/users/${phoneNumber}`).then(({ data }) => {
+    return data;
+  });
+};
 
 export const postJob = async (newJob) => {
   return await request.post('/jobs', newJob).then(({ data }) => {
@@ -25,3 +38,30 @@ export const updateProfile = async (newProfile, user_id) => {
     return data
   })
 }
+
+export const getChatMessages = async (user_id, chatroom) => {
+  console.log("herelo");
+  return await request
+    .get(`/messages/${user_id}?chatroom=${chatroom}`)
+    .then(({ data }) => {
+      console.log(data);
+      return data;
+    });
+};
+
+// getChatMessages(4, 1);
+
+export const getJobsByElderId = async (elder_id) => {
+  return await request.get(`/jobs/elder/${elder_id}`).then(({ data }) => {
+    console.log(data);
+    return data;
+  });
+};
+
+getJobsByElderId(4);
+export const postNewUser = async (newUser) => {
+  console.log("here");
+  return await request.post("/users", newUser).then(({ data }) => {
+    console.log(data);
+  });
+};

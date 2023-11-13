@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {Alert, Button, TextInput, Text, View, StyleSheet, Modal} from 'react-native'
 import { updateProfile } from '../api';
 import { UserType } from '../UserContext';
- 
+
 export default EditProfile = () => {
     const {userId, setUserId} = useContext(UserType)
     const [phoneNo, setPhoneNo] = useState(userId.phoneNumber)

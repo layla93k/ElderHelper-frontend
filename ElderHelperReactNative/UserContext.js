@@ -1,7 +1,7 @@
 import React from "react";
 import { createContext, useState } from "react";
 
-const UserType = createContext();
+const CurrentUser = createContext();
 
 const UserContext = ({ children }) => {
   const [userId, setUserId] = useState({
@@ -14,11 +14,16 @@ const UserContext = ({ children }) => {
     avatar_url: "https://images.unsplash.com/photo-1699519337091-8499c51d9186",
     profile_msg: "Offering my services for house-sitting."
   });
+
+  //import { CurrentUser } from "../UserContext";
+  //const { userId } = useContext(CurrentUser);
+  //to use the properties of the current user
+
   return (
-    <UserType.Provider value={{ userId, setUserId }}>
+    <CurrentUser.Provider value={{ userId, setUserId }}>
       {children}
-    </UserType.Provider>
+    </CurrentUser.Provider>
   );
 };
 
-export { UserType, UserContext };
+export { CurrentUser, UserContext };
