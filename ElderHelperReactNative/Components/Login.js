@@ -4,17 +4,23 @@ import {
   ScrollView,
   SafeAreaView,
   View,
-  Button,
+  TouchableHighlight,
   Alert,
   TextInput,
   Pressable,
 } from "react-native";
 import React from "react";
+import { useContext } from "react";
+import { CurrentUser } from "../UserContext";
+import { useNavigation } from "@react-navigation/native";
 import { getExistingUser } from "../api";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Login() {
+  const navigation = useNavigation();
+
   const [numberLogin, onChangeNumberLogin] = React.useState("");
   const [passwordLogin, onChangePasswordLogin] = React.useState("");
   const [userDoesNotExist, setUserDoesNotExist] = React.useState(false);
@@ -25,17 +31,36 @@ export default function Login() {
       return;
     }
   };
+
+  const { userId, setUserId } = useContext(CurrentUser);
+
   const handleLogin = () => {
     console.log("axios sent");
     getExistingUser(numberLogin)
-      .then((response) => {
+      .then(({ user }) => {
+        setUserId(user);
         setUserDoesNotExist(false);
-        console.log("user exists");
+        Alert.alert(
+          "Successfully logged in",
+          `Welcome back ${user.first_name}!`,
+          [
+            {
+              text: "OK",
+              onPress: () => {
+                navigation.navigate("Home");
+              },
+            },
+          ]
+        );
       })
       .catch((err) => {
         setUserDoesNotExist(true);
         console.log("user does not exist");
       });
+  };
+
+  const handleSignUpLinkPress = () => {
+    navigation.navigate("SignUp");
   };
   return (
     <SafeAreaView style={{ backgroundColor: "#9DD8E7", height: "100%" }}>
@@ -91,6 +116,17 @@ export default function Login() {
           </View>
         </View>
         <View>
+          <Text style={style.signuplink}>
+            If you do not have a login, click{" "}
+            <TouchableOpacity
+              style={style.highlight}
+              onPress={handleSignUpLinkPress}
+            >
+              <Text style={style.highlight}>here</Text>
+            </TouchableOpacity>
+          </Text>
+        </View>
+        <View>
           <Pressable
             style={style.button}
             onPress={() => {
@@ -117,6 +153,13 @@ const style = StyleSheet.create({
   //   textAlign: "center",
   //   marginTop: 30,
   // },
+  signuplink: {
+    marginLeft: 15,
+    marginBottom: 10,
+  },
+  highlight: {
+    fontWeight: "bold",
+  },
   label: {
     marginVertical: 5,
     fontSize: 14,
