@@ -47,3 +47,9 @@ export const getJobsByElderId = async (elder_id) => {
 };
 
 getJobsByElderId(4);
+export const postNewUser = async (newUser) => {
+  console.log("here");
+  return await request.post("/users", newUser).then(({ data }) => {
+    console.log(data);
+  });
+};

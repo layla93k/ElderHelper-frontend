@@ -9,7 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import React from "react";
-
+import { postNewUser } from "../api";
 import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -23,12 +23,14 @@ export default function App() {
   const [password, onChangePassword] = React.useState("");
   const [confirmPassword, onChangeConfirmPassword] = React.useState("");
   const [userType, setUserType] = React.useState("");
-  const [inputs, setInputs] = React.useState({
-    firstname: "",
-    surname: "",
-    phoneNumber: "",
-    postcode: "",
-    password: "",
+  const [passwordMsg, setPasswordMsg] = React.useState("");
+  const [newUser, setNewUser] = React.useState({
+    phone_number: phoneNumber,
+    first_name: firstName,
+    surname: surname,
+    is_elder: userType,
+    postcode: postcode,
+    avatar_url: "",
   });
 
   const validate = () => {
@@ -47,8 +49,33 @@ export default function App() {
       Alert.alert("Your passwords do not match");
       return;
     }
-    Alert.alert("Registration successful!");
+    if (password.length < 7) {
+      setPasswordMsg("Password must contain at least 7 characters");
+    }
   };
+  const handleSignup = () => {
+    console.log("sending axios");
+    postNewUser(newUser)
+      .then((response) => {
+        Alert.alert("Registration successful!");
+        return response;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  React.useEffect(() => {
+    setNewUser({
+      phone_number: phoneNumber,
+      first_name: firstName,
+      surname: surname,
+      is_elder: userType,
+      postcode: postcode,
+      avatar_url:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    });
+  }, [firstName, surname, postcode, phoneNumber, userType]);
 
   return (
     <SafeAreaView style={{ backgroundColor: "#9DD8E7", flex: 0 }}>
@@ -104,14 +131,14 @@ export default function App() {
               title="Elder"
               onPress={() => {
                 Alert.alert("You have chosen an Elder account");
-                setUserType("Elder");
+                setUserType(true);
               }}
             />
             <Button
               title="Helper"
               onPress={() => {
                 Alert.alert("You have chosen a Helper account");
-                setUserType("Helper");
+                setUserType(false);
               }}
             />
           </View>
@@ -121,6 +148,7 @@ export default function App() {
           <View style={[style.inputContainer]}>
             <Feather style={style.icon} name="phone" size={24} color="black" />
             <TextInput
+              keyboardType="numeric"
               style={style.input}
               onChangeText={onChangePhoneNumber}
               value={phoneNumber}
@@ -136,6 +164,7 @@ export default function App() {
                 color="black"
               />
               <TextInput
+                placeholder="Manchester postcodes only"
                 style={style.input}
                 onChangeText={onChangePostcode}
                 value={postcode}
@@ -150,6 +179,7 @@ export default function App() {
                   size={24}
                   color="black"
                 />
+
                 <TextInput
                   secureTextEntry={true}
                   style={style.input}
@@ -157,6 +187,7 @@ export default function App() {
                   value={password}
                 />
               </View>
+              <Text style={StyleSheet.passwordMessage}>{passwordMsg}</Text>
               <View>
                 <Text style={style.label}>Confirm Password</Text>
                 <View style={[style.inputContainer]}>
@@ -167,6 +198,7 @@ export default function App() {
                     color="black"
                   />
                   <TextInput
+                    secureTextEntry={true}
                     style={style.input}
                     onChangeText={onChangeConfirmPassword}
                     value={confirmPassword}
@@ -177,7 +209,10 @@ export default function App() {
                 <Button
                   style={style.button}
                   title="Register"
-                  onPress={validate}
+                  onPress={() => {
+                    validate();
+                    handleSignup();
+                  }}
                 />
               </View>
             </View>
