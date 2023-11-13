@@ -27,6 +27,18 @@ export const getExistingUser = async (phoneNumber) => {
   });
 };
 
+export const postJob = async (newJob) => {
+  return await request.post('/jobs', newJob).then(({ data }) => {
+    return data
+  })
+}
+
+export const updateProfile = async (newProfile, user_id) => {
+  return await request.patch(`/users/${user_id}`, newProfile).then(({ data }) => {
+    return data
+  })
+}
+
 export const getChatMessages = async (user_id, chatroom) => {
   console.log("herelo");
   return await request
