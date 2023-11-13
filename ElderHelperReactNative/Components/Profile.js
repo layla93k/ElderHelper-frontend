@@ -9,8 +9,6 @@ const Stack = createNativeStackNavigator();
 function Profile({ navigation }) {
   const { userId, setUserId } = useContext(CurrentUser);
 
-const {userId, setUserId} = useContext(UserType)
-
     return (
 <View>
     <View style = {styles.profilePicView}>
@@ -32,8 +30,9 @@ const {userId, setUserId} = useContext(UserType)
     <View style = {styles.button}>
     <Button title = 'Update Profile' onPress={() => navigation.navigate('Edit Profile')}></Button>
     </View>
-  );
-}
+    </View>
+  )}
+
 
 export default function ProfileNav() {
   return (
@@ -92,4 +91,4 @@ const styles = StyleSheet.create({
   button: {
     paddingTop: 10,
   },
-});
+})
