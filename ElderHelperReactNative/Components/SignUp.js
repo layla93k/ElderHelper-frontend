@@ -9,6 +9,8 @@ import {
   TextInput,
 } from "react-native";
 import React from "react";
+import Login from "./Login";
+import { useNavigation } from "@react-navigation/native";
 import { postNewUser } from "../api";
 import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
@@ -16,6 +18,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function App() {
+  const navigate = useNavigation();
   const [firstName, onChangeFirstName] = React.useState("");
   const [surname, onChangeSurname] = React.useState("");
   const [postcode, onChangePostcode] = React.useState("");
@@ -58,7 +61,8 @@ export default function App() {
     postNewUser(newUser)
       .then((response) => {
         Alert.alert("Registration successful!");
-        return response;
+        navigation.navigate("Login");
+        return;
       })
       .catch((err) => {
         console.log(err);
