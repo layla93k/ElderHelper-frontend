@@ -4,7 +4,9 @@ import { createContext, useState } from "react";
 const CurrentUser = createContext();
 
 const UserContext = ({ children }) => {
+
   const [userId, setUserId] = useState({});
+
 
   //import { CurrentUser } from "../UserContext";
   //const { userId } = useContext(CurrentUser);
