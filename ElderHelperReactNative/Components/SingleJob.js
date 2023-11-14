@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Text, View, StyleSheet, Image } from "react-native";
-import { fetchJobsWithUsers } from "../api";
+import { fetchJobsWithUsers, deleteJob } from "../api";
 import { getFormatedDate } from "react-native-modern-datepicker";
 import { CurrentUser } from "../UserContext";
 
@@ -8,21 +8,31 @@ import { CurrentUser } from "../UserContext";
 export default SingleJob = () => {
 const { userId, setUserId } = useContext(CurrentUser);
 const [jobWithUser, setJobWithUser] = useState({})
-const id = 21; //CURRENTLY HARD CODED, THIS NEEDS TO BE PASSED IN
+const id = 3; //CURRENTLY HARD CODED, THIS NEEDS TO BE PASSED IN
 
 const acceptHandler = (e) => {
 e.preventDefault();
-Alert.alert('Job accepted.');
+Alert.alert('Job accepted.');  //for accepting jobs as helper
 }
 
 const cancelHandler = (e) => {
     e.preventDefault();
-    Alert.alert('Job cancelled.');
+    Alert.alert('Job cancelled.');  //for cancelling previously accepted job as helper
     }
+
+const editOwnJobHandler = (e) => {
+        e.preventDefault();
+        Alert.alert('Job edited.');  //for editing own job as elder
+        }
+
+const jobCompleteHandler = (e) => {
+    e.preventDefault();
+    Alert.alert('Job marked as complete.')  //for marking jobs as complete
+}
 
 const deleteOwnJobHandler = (e) => {
         e.preventDefault();
-        Alert.alert('Job deleted.');
+            Alert.alert("Job deleted.")  //for deleting jobs as elder
         }
 
 useEffect(() => {
@@ -51,7 +61,7 @@ useEffect(() => {
         </View>
         </View>
 
-        {(jobWithUser.status_id === 1 && userId.isElder === true && userId.user_id === jobWithUser.elder_id) && <Button title = 'Delete job' onPress={deleteOwnJobHandler}></Button>}
+        {(jobWithUser.status_id === 1 && userId.isElder === true && userId.user_id === jobWithUser.elder_id) && <Button title = 'Edit job' onPress={editOwnJobHandler}></Button>}
 
         {(jobWithUser.status_id === 1 && userId.isElder === false) && <Button title = 'Accept job' onPress={acceptHandler}></Button>}
 
@@ -62,6 +72,8 @@ useEffect(() => {
         {(jobWithUser.status_id === 3) && <Button title = 'Job complete' disabled = {true}></Button>}
 
         {(jobWithUser.status_id === 4) && <Button title = 'Job expired' disabled = {true}></Button>}
+
+        {(jobWithUser.status_id !== 2 && userId.isElder === true && userId.user_id === jobWithUser.elder_id) && <Button title = 'Delete job' onPress={deleteOwnJobHandler}></Button>}
     </View>
     )
 }
