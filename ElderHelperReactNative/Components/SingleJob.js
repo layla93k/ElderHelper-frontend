@@ -5,10 +5,12 @@ import { getFormatedDate } from "react-native-modern-datepicker";
 import { CurrentUser } from "../UserContext";
 
 
-export default SingleJob = () => {
+export default SingleJob = ({route}) => {
+const {jobData} = route.params   
+console.log(jobData)
 const { userId, setUserId } = useContext(CurrentUser);
 const [jobWithUser, setJobWithUser] = useState({})
-const id = 3; //CURRENTLY HARD CODED, THIS NEEDS TO BE PASSED IN
+const id = jobData.job.job_id
 
 const acceptHandler = (e) => {
 e.preventDefault();
