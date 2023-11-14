@@ -4,26 +4,22 @@ import {
   ScrollView,
   SafeAreaView,
   View,
-  TouchableHighlight,
   Alert,
   TextInput,
   Pressable,
 } from "react-native";
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CurrentUser } from "../UserContext";
-import { useNavigation } from "@react-navigation/native";
 import { getExistingUser } from "../api";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function Login() {
-  const navigation = useNavigation();
-
-  const [numberLogin, onChangeNumberLogin] = React.useState("");
-  const [passwordLogin, onChangePasswordLogin] = React.useState("");
-  const [userDoesNotExist, setUserDoesNotExist] = React.useState(false);
+export default function Login({ navigation }) {
+  const [numberLogin, onChangeNumberLogin] = useState("");
+  const [passwordLogin, onChangePasswordLogin] = useState("");
+  const [userDoesNotExist, setUserDoesNotExist] = useState(false);
 
   const validate = () => {
     if (!numberLogin || !passwordLogin) {
@@ -35,7 +31,6 @@ export default function Login() {
   const { userId, setUserId } = useContext(CurrentUser);
 
   const handleLogin = () => {
-    console.log("axios sent");
     getExistingUser(numberLogin)
       .then(({ user }) => {
         setUserId(user);
@@ -47,7 +42,7 @@ export default function Login() {
             {
               text: "OK",
               onPress: () => {
-                navigation.navigate("Home");
+                navigation.navigate(userId.is_elder ? "ElderJobs" : "Map");
               },
             },
           ]
