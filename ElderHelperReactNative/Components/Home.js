@@ -193,7 +193,6 @@ function TabNavigator() {
 export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Elder Helper</Text>
       <TabNavigator />
     </View>
   );

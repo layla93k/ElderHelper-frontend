@@ -1,25 +1,65 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Text, View, StyleSheet, Image } from "react-native";
-import { fetchJobsWithUsers, deleteJob } from "../api";
+import { fetchJobsWithUsers, deleteJob, patchJob } from "../api";
 import { getFormatedDate } from "react-native-modern-datepicker";
 import { CurrentUser } from "../UserContext";
+import { useNavigation } from "@react-navigation/native";
 
 
 export default SingleJob = ({route}) => {
 const {jobData} = route.params   
-console.log(jobData)
 const { userId, setUserId } = useContext(CurrentUser);
 const [jobWithUser, setJobWithUser] = useState({})
 const id = jobData.job.job_id
+const navigation = useNavigation();
 
 const acceptHandler = (e) => {
 e.preventDefault();
-Alert.alert('Job accepted.');  //for accepting jobs as helper
-}
+        {patchJob({
+        "job_title": jobData.job.job_title,
+        "job_desc": jobData.job.job_desc,
+        "expiry_date": jobData.job.expiry_date,
+        "helper_id": userId.user_id,
+        "status_id": 2
+}, id).then((res) => {
+    Alert.alert(
+    "Job accepted.", "",
+    [
+        {
+          text: "OK",
+          onPress: () => {
+            navigation.goBack();
+          },
+        },
+      ]
+  );
+})
+.catch((err) => {console.log(err)})
+}}
 
 const cancelHandler = (e) => {
     e.preventDefault();
-    Alert.alert('Job cancelled.');  //for cancelling previously accepted job as helper
+    {patchJob({
+        "job_title": jobData.job.job_title,
+        "job_desc": jobData.job.job_desc,
+        "expiry_date": jobData.job.expiry_date,
+        "helper_id": 1,
+        "status_id": 1
+}, id).then((res) => {
+    Alert.alert(
+    "Job cancelled.", "",
+    [
+        {
+          text: "OK",
+          onPress: () => {
+            navigation.goBack();
+          },
+        },
+      ]
+  );
+})
+.catch((err) => {console.log(err)})
+} //for deleting jobs as elder  //for cancelling previously accepted job as helper
     }
 
 const editOwnJobHandler = (e) => {
@@ -27,14 +67,20 @@ const editOwnJobHandler = (e) => {
         Alert.alert('Job edited.');  //for editing own job as elder
         }
 
-const jobCompleteHandler = (e) => {
-    e.preventDefault();
-    Alert.alert('Job marked as complete.')  //for marking jobs as complete
-}
-
 const deleteOwnJobHandler = (e) => {
         e.preventDefault();
-            Alert.alert("Job deleted.")  //for deleting jobs as elder
+        deleteJob(id)
+        Alert.alert(
+            "Job deleted.", "",
+            [
+                {
+                  text: "OK",
+                  onPress: () => {
+                    navigation.goBack();
+                  },
+                },
+              ]
+          ); //for deleting jobs as elder
         }
 
 useEffect(() => {
@@ -63,19 +109,19 @@ useEffect(() => {
         </View>
         </View>
 
-        {(jobWithUser.status_id === 1 && userId.isElder === true && userId.user_id === jobWithUser.elder_id) && <Button title = 'Edit job' onPress={editOwnJobHandler}></Button>}
+        {(jobWithUser.status_id === 1 && userId.is_elder == 'true' && userId.user_id === jobWithUser.elder_id) && <Button title = 'Edit job' onPress={editOwnJobHandler}></Button>}
 
-        {(jobWithUser.status_id === 1 && userId.isElder === false) && <Button title = 'Accept job' onPress={acceptHandler}></Button>}
+        {(jobWithUser.status_id === 1 && userId.is_elder == 'false') && <Button title = 'Accept job' onPress={acceptHandler}></Button>}
 
-        {(jobWithUser.status_id === 2 && userId.isElder === false && userId.user_id === jobWithUser.helper_id) && <Button title = 'Cancel job' onPress={cancelHandler}></Button>}
-
-        {(jobWithUser.status_id === 2) && <Button title = 'Job taken' disabled = {true}></Button>}
+        {(jobWithUser.status_id === 2) && <Button title = 'Job taken' disabled = {true} ></Button>}
         
         {(jobWithUser.status_id === 3) && <Button title = 'Job complete' disabled = {true}></Button>}
 
         {(jobWithUser.status_id === 4) && <Button title = 'Job expired' disabled = {true}></Button>}
 
-        {(jobWithUser.status_id !== 2 && userId.isElder === true && userId.user_id === jobWithUser.elder_id) && <Button title = 'Delete job' onPress={deleteOwnJobHandler}></Button>}
+        {(jobWithUser.status_id === 2 && userId.is_elder == 'false' && userId.user_id === jobWithUser.helper_id) && <Button title = 'Cancel job' onPress={cancelHandler}></Button>}
+
+        {(jobWithUser.status_id !== 2 && userId.is_elder == 'true' && userId.user_id === jobWithUser.elder_id) && <Button title = 'Delete job' onPress={deleteOwnJobHandler}></Button>}
     </View>
     )
 }
