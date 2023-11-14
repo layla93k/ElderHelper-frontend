@@ -1,10 +1,10 @@
 import React, {useContext, useState} from 'react';
 import {Alert, Button, TextInput, Text, View, StyleSheet, Modal} from 'react-native'
 import { updateProfile } from '../api';
-import { UserType } from '../UserContext';
+import { CurrentUser } from '../UserContext';
 
 export default EditProfile = () => {
-    const {userId, setUserId} = useContext(UserType)
+    const {userIdr} = useContext(CurrentUser)
     const [phoneNo, setPhoneNo] = useState(userId.phoneNumber)
     const [firstName, setFirstName] = useState(userId.first_name)
     const [surname, setSurname] = useState(userId.surname)

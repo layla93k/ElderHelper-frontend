@@ -140,7 +140,7 @@ export default function Login({ navigation }) {
 {
 }
 
-const style = StyleSheet.create({
+// const style = StyleSheet.create({
   // text: {
   //   flex: 1,
   //   fontSize: 30,
@@ -148,63 +148,63 @@ const style = StyleSheet.create({
   //   textAlign: "center",
   //   marginTop: 30,
   // },
-  signuplink: {
-    marginLeft: 15,
-    marginBottom: 10,
-  },
-  highlight: {
-    fontWeight: "bold",
-  },
-  label: {
-    marginVertical: 5,
-    fontSize: 14,
-  },
-  userDoesntExist: {
-    color: "red",
-    marginBottom: 10,
-  },
-  inputContainer: {
-    height: 60,
-    marginBottom: 10,
-    backgroundColor: "#D6EAEE",
-    flexDirection: "row",
-    marginHorizontal: 15,
-    borderWidth: 0.5,
-    alignItems: "center",
-  },
-  icon: {
-    marginLeft: 10,
-    color: "#C0C0C0",
-  },
-  title: {
-    textAlign: "center",
-    marginVertical: 8,
-  },
-  fixToText: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
-  input: {
-    fontSize: 20,
-    marginLeft: 10,
-    padding: 15,
-  },
-  button: {
-    padding: 5,
-    marginTop: 10,
-    borderRadius: 10,
-    padding: 5,
-    backgroundColor: "#0072BB",
-    width: 180,
-    height: 60,
-    flex: "row",
-    alignSelf: "center",
-  },
-  text: {
-    justifyContent: "center",
-    textAlign: "center",
-    paddingTop: 10,
-    fontSize: 22,
-    color: "white",
-  },
-});
+//   signuplink: {
+//     marginLeft: 15,
+//     marginBottom: 10,
+//   },
+//   highlight: {
+//     fontWeight: "bold",
+//   },
+//   label: {
+//     marginVertical: 5,
+//     fontSize: 14,
+//   },
+//   userDoesntExist: {
+//     color: "red",
+//     marginBottom: 10,
+//   },
+//   inputContainer: {
+//     height: 60,
+//     marginBottom: 10,
+//     backgroundColor: "#D6EAEE",
+//     flexDirection: "row",
+//     marginHorizontal: 15,
+//     borderWidth: 0.5,
+//     alignItems: "center",
+//   },
+//   icon: {
+//     marginLeft: 10,
+//     color: "#C0C0C0",
+//   },
+//   title: {
+//     textAlign: "center",
+//     marginVertical: 8,
+//   },
+//   fixToText: {
+//     flexDirection: "row",
+//     justifyContent: "space-evenly",
+//   },
+//   input: {
+//     fontSize: 20,
+//     marginLeft: 10,
+//     padding: 15,
+//   },
+//   button: {
+//     padding: 5,
+//     marginTop: 10,
+//     borderRadius: 10,
+//     padding: 5,
+//     backgroundColor: "#0072BB",
+//     width: 180,
+//     height: 60,
+//     flex: "row",
+//     alignSelf: "center",
+//   },
+//   text: {
+//     justifyContent: "center",
+//     textAlign: "center",
+//     paddingTop: 10,
+//     fontSize: 22,
+//     color: "white",
+//   },
+// });
