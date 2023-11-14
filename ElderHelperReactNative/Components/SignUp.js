@@ -7,10 +7,11 @@ import {
   Button,
   Alert,
   TextInput,
+  Pressable,
 } from "react-native";
 import React from "react";
-
-import { useNavigation } from "@react-navigation/native";
+import RNPickerSelect from "react-native-picker-select";
+import { manchesterPostcodes } from "../postcodes";
 import { postNewUser } from "../api";
 import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
@@ -58,7 +59,10 @@ export default function App({ navigation }) {
   const handleSignup = () => {
     postNewUser(newUser)
       .then((response) => {
-        Alert.alert("Registration successful!");
+        Alert.alert(
+          "Registration successful!",
+          `Welcome to Elder Helper ${newUser.first_name}!`
+        );
         navigation.navigate("Login");
         return;
       })
@@ -129,20 +133,24 @@ export default function App({ navigation }) {
         <View>
           <Text style={style.title}>Select your account type:</Text>
           <View style={style.fixToText}>
-            <Button
-              title="Elder"
+            <Pressable
+              style={style.userbutton}
               onPress={() => {
                 Alert.alert("You have chosen an Elder account");
                 setUserType(true);
               }}
-            />
-            <Button
-              title="Helper"
+            >
+              <Text style={style.buttontext}>Elder</Text>
+            </Pressable>
+            <Pressable
+              style={style.userbutton}
               onPress={() => {
                 Alert.alert("You have chosen a Helper account");
                 setUserType(false);
               }}
-            />
+            >
+              <Text style={style.buttontext}>Helper</Text>
+            </Pressable>
           </View>
         </View>
         <View>
@@ -157,23 +165,34 @@ export default function App({ navigation }) {
             />
           </View>
           <View>
-            <Text style={style.label}>Postcode</Text>
+            <Text>Choose your postcode area</Text>
+          </View>
+          <View style={style.pickerContainer}>
+            <RNPickerSelect
+              onValueChange={(value) => onChangePostcode(value)}
+              items={manchesterPostcodes}
+            />
+          </View>
+          <View>
+            <Text style={style.label}>Password</Text>
             <View style={[style.inputContainer]}>
-              <FontAwesome
+              <MaterialCommunityIcons
                 style={style.icon}
-                name="address-card-o"
+                name="onepassword"
                 size={24}
                 color="black"
               />
+
               <TextInput
-                placeholder="Manchester postcodes only"
+                secureTextEntry={true}
                 style={style.input}
-                onChangeText={onChangePostcode}
-                value={postcode}
+                onChangeText={onChangePassword}
+                value={password}
               />
             </View>
+            <Text style={StyleSheet.passwordMessage}>{passwordMsg}</Text>
             <View>
-              <Text style={style.label}>Password</Text>
+              <Text style={style.label}>Confirm Password</Text>
               <View style={[style.inputContainer]}>
                 <MaterialCommunityIcons
                   style={style.icon}
@@ -181,42 +200,24 @@ export default function App({ navigation }) {
                   size={24}
                   color="black"
                 />
-
                 <TextInput
                   secureTextEntry={true}
                   style={style.input}
-                  onChangeText={onChangePassword}
-                  value={password}
+                  onChangeText={onChangeConfirmPassword}
+                  value={confirmPassword}
                 />
               </View>
-              <Text style={StyleSheet.passwordMessage}>{passwordMsg}</Text>
-              <View>
-                <Text style={style.label}>Confirm Password</Text>
-                <View style={[style.inputContainer]}>
-                  <MaterialCommunityIcons
-                    style={style.icon}
-                    name="onepassword"
-                    size={24}
-                    color="black"
-                  />
-                  <TextInput
-                    secureTextEntry={true}
-                    style={style.input}
-                    onChangeText={onChangeConfirmPassword}
-                    value={confirmPassword}
-                  />
-                </View>
-              </View>
-              <View>
-                <Button
-                  style={style.button}
-                  title="Register"
-                  onPress={() => {
-                    validate();
-                    handleSignup();
-                  }}
-                />
-              </View>
+            </View>
+            <View>
+              <Pressable
+                style={style.button}
+                onPress={() => {
+                  validate();
+                  handleSignup();
+                }}
+              >
+                <Text style={style.text}>Register</Text>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -227,8 +228,26 @@ export default function App({ navigation }) {
 
 const style = StyleSheet.create({
   label: {
-    marginVertical: 5,
+    marginVertical: 6,
     fontSize: 14,
+  },
+  text: {
+    justifyContent: "center",
+    textAlign: "center",
+    paddingTop: 10,
+    fontSize: 22,
+    color: "white",
+  },
+  pickerContainer: {
+    padding: 5,
+    height: 60,
+    marginTop: 5,
+    marginBottom: 10,
+    backgroundColor: "#D6EAEE",
+    flexDirection: "row",
+    marginHorizontal: 15,
+    borderWidth: 0.5,
+    alignItems: "center",
   },
   inputContainer: {
     height: 60,
@@ -257,7 +276,34 @@ const style = StyleSheet.create({
     padding: 15,
   },
   button: {
-    paddingTop: 30,
+    padding: 5,
+    marginTop: 10,
+    borderRadius: 10,
+    padding: 5,
     backgroundColor: "#0072BB",
+    width: 180,
+    height: 60,
+    flex: "row",
+    alignSelf: "center",
+  },
+  userbutton: {
+    padding: 3,
+    marginTop: 10,
+    borderRadius: 10,
+    padding: 5,
+    backgroundColor: "#0072BB",
+    width: 100,
+    height: 50,
+    flex: "row",
+    alignSelf: "center",
+  },
+  postcode: {
+    fontSize: 20,
+  },
+  buttontext: {
+    fontSize: 20,
+    textAlign: "center",
+    paddingTop: 6,
+    color: "white",
   },
 });
