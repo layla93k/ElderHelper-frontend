@@ -7,7 +7,7 @@ import { UserContext } from "./UserContext";
 import HomeTabs from "./Components/HomeTabs";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
-//import LandingPage from "./Components/LandingPage";
+import LandingPage from "./Components/LandingPage";
 
 const Stack = createStackNavigator();
 
@@ -15,12 +15,9 @@ export default function App() {
   return (
     <UserContext>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          {/* <Stack.Screen
-            name="landing-page"
-            component={LandingPage}
-            options={{ headerShown: false }}
-          /> */}
+        <Stack.Navigator initialRouteName="LandingPage">
+        
+          <Stack.Screen name="LandingPage" component={LandingPage} options={{ headerShown: false }} />
           <Stack.Screen
             name="Login"
             component={Login}
