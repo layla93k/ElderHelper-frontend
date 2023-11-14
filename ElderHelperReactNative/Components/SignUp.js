@@ -9,7 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import React from "react";
-import Login from "./Login";
+
 import { useNavigation } from "@react-navigation/native";
 import { postNewUser } from "../api";
 import { FontAwesome } from "@expo/vector-icons";
@@ -17,8 +17,7 @@ import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function App() {
-  const navigate = useNavigation();
+export default function App({ navigation }) {
   const [firstName, onChangeFirstName] = React.useState("");
   const [surname, onChangeSurname] = React.useState("");
   const [postcode, onChangePostcode] = React.useState("");
@@ -57,7 +56,6 @@ export default function App() {
     }
   };
   const handleSignup = () => {
-    console.log("sending axios");
     postNewUser(newUser)
       .then((response) => {
         Alert.alert("Registration successful!");
