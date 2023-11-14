@@ -90,6 +90,18 @@ export const getJobsByElderId = async (elder_id) => {
 
 export const postNewUser = async (newUser) => {
   return await request.post("/users", newUser).then(({ data }) => {
-    console.log(data);
+    return data;
+  });
+};
+
+export const getAcceptedHelperJobs = async (user_id) => {
+  return await request.get(`/users/${user_id}/accepted`).then(({ data }) => {
+    return data;
+  });
+};
+
+export const getJobsByElder = async (elder_id) => {
+  return await request.get(`/jobs/elder/${elder_id}`).then(({ data }) => {
+    return data;
   });
 };
