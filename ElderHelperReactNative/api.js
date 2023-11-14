@@ -31,6 +31,16 @@ export const getSingleJob = async(job_id) => {
   })
 }
 
+export const deleteJob = async(job_id) => {
+  return await request.delete(`/jobs/${job_id}`)
+}
+
+export const patchJob = async(job_id) => {
+  return await request.patch(`/jobs/${job_id}`).then(({data}) => {
+    return data
+  })
+}
+
 export const getExistingUser = async (phoneNumber) => {
   return await request.get(`/users/${phoneNumber}`).then(({ data }) => {
     return data;
