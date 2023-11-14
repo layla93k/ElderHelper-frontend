@@ -20,28 +20,33 @@ export const fetchJobs = async (press) => {
 };
 
 export const fetchJobsWithUsers = async () => {
-  return await request.get('jobs/users').then(({data}) => {
-    return data
-  })
-}
+  return await request.get("jobs/users").then(({ data }) => {
+    return data;
+  });
+};
 
-export const getSingleJob = async(job_id) => {
-  return await request.get(`/jobs/${job_id}`).then(({data}) => {
-    return data
-  })
-}
+export const getSingleJob = async (job_id) => {
+  return await request.get(`/jobs/${job_id}`).then(({ data }) => {
+    return data;
+  });
+};
 
-export const deleteJob = async(job_id) => {
-  return await request.delete(`/jobs/${job_id}`)
-}
+export const deleteJob = async (job_id) => {
+  return await request.delete(`/jobs/${job_id}`);
+};
 
-export const patchJob = async(updatedJob, job_id) => {
-  console.log(updatedJob)
-  console.log(job_id)
-  return await request.patch(`/jobs/${job_id}`, updatedJob).then(({data}) => {
-    return data
-  }).catch((err) => {console.log(err)})
-}
+export const patchJob = async (updatedJob, job_id) => {
+  console.log(updatedJob);
+  console.log(job_id);
+  return await request
+    .patch(`/jobs/${job_id}`, updatedJob)
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 export const getExistingUser = async (phoneNumber) => {
   return await request.get(`/users/${phoneNumber}`).then(({ data }) => {
