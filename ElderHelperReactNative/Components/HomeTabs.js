@@ -5,9 +5,9 @@ import { CurrentUser } from "../UserContext";
 import TaskBoard from "./TaskBoard";
 import ChatRooms from "./ChatRooms";
 import Profile from "./Profile";
-import JobsList from "./JobsList";
 import PostJob from "./PostJob";
 import ElderJobs from "./ElderJobs";
+
 export function HomeTabs() {
   const Tab = createBottomTabNavigator();
   const { userId } = useContext(CurrentUser);
@@ -107,32 +107,6 @@ export function HomeTabs() {
                   }}
                 >
                   Chat
-                </Text>
-              </View>
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="JobsList"
-          component={JobsList}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <View>
-                <Image
-                  source={require("../assets/Chat.png")}
-                  resizeMode="contain"
-                  style={{
-                    width: 25,
-                    height: 25,
-                  }}
-                />
-                <Text
-                  style={{
-                    color: focused ? "#e32f45" : "#748c94",
-                    fontSize: 12,
-                  }}
-                >
-                  JobsList
                 </Text>
               </View>
             ),
