@@ -57,7 +57,6 @@ export default function App() {
     }
   };
   const handleSignup = () => {
-    console.log("sending axios");
     postNewUser(newUser)
       .then((response) => {
         Alert.alert("Registration successful!");
