@@ -1,30 +1,32 @@
 import React from 'react';
-import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, Button } from 'react-native';
 import { useState, useEffect } from 'react';
 import { getJobsUsers } from '../api';
 
-export default function JobList() {
+export default function JobList({navigation }) {
 
     const [jobs, setJobs] = useState([])
-
+    
     useEffect(() => {
         getJobsUsers().then((jobs) => {
             setJobs(jobs)
         })
     })
 
-    const pressHandler = (jobId) => {
-        
+    const pressHandler = (job) => {navigation.navigate("SingleJob", {
+        jobData: {job}
+      })
     }
 
     return (
         <View style={styles.jobsListContainer}>
+            <Button title='Map' onPress={()=> navigation.navigate('Map')}/>
             <FlatList
                 style={styles.jobsList}
                 keyExtractor={(item) => item.job_id }
                 data={jobs}
                 renderItem={({ item }) => (
-                    <TouchableOpacity style={styles.job} onPress={() => pressHandler(item.job_id)}>
+                    <TouchableOpacity style={styles.job} onPress={() => pressHandler(item)}>
                         <Text style={styles.jobTitle}>{item.job_title}</Text>
                         <View style={styles.row}>
                             <Image style={styles.jobImg}src={item.avatar_url}/>
