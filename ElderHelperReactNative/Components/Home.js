@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, View, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import TaskBoard from "./TaskBoard";
-import ChatRooms from "./ChatRooms";
+import ChatRoomNav from "./ChatRoomNav";
 import Profile from "./Profile";
 import JobsList from "./JobsList";
 import PostJob from "./PostJob";
@@ -136,8 +136,8 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="ChatRooms"
-        component={ChatRooms}
+        name="ChatRoomNav"
+        component={ChatRoomNav}
         options={{
           tabBarIcon: ({ focused }) => (
             <View>

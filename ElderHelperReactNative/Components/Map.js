@@ -19,7 +19,6 @@ function Map({ navigation }) {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        console.log(status);
         setErrorMsg("Permission to access location was denied");
         return;
       }
@@ -41,13 +40,14 @@ function Map({ navigation }) {
     setPress(title);
   };
 
-
-
   return (
-
     <View style={styles.view}>
-      <Button title='List' onPress={()=> navigation.navigate('List')} />
-       <Button disabled={true} title='Map' onPress={()=> navigation.navigate('Map')}/>
+      <Button title="List" onPress={() => navigation.navigate("List")} />
+      <Button
+        disabled={true}
+        title="Map"
+        onPress={() => navigation.navigate("Map")}
+      />
       <MapView
         initialRegion={{
           latitude: 53.4808,
@@ -96,9 +96,17 @@ function Map({ navigation }) {
 export default function MapStackNav() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Map" component={Map} options={{headerShown: false}} />
+      <Stack.Screen
+        name="Map"
+        component={Map}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="SingleJob" component={SingleJob} />
-      <Stack.Screen name="List" component={List} options={{headerShown: false}} />
+      <Stack.Screen
+        name="List"
+        component={List}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
