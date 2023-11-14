@@ -35,7 +35,9 @@ fetchJobs(press).then((jobsFromApi) => {
           <Button
             title="more info"
             style={styles.button}
-            onPress={() => navigation.navigate("SingleJob")}
+            onPress={() => navigation.navigate("SingleJob", {
+              jobData: {job}
+            })}
           />
         </View>
       ))

@@ -10,16 +10,17 @@ import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
 import Map from "./Components/Map";
 import SingleJob from "./Components/SingleJob";
+import MapStackNav from "./Components/Map";
 
 const Stack = createStackNavigator();
 
 function StackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Map" component={Map} />
+      <Stack.Screen name="Map" component={MapStackNav} />
       <Stack.Screen name="SingleJob" component={SingleJob} />
     </Stack.Navigator>
   );
