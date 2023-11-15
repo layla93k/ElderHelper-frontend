@@ -11,12 +11,14 @@ export default function ElderJobs() {
   useEffect(() => {
     getAcceptedHelperJobs(actualUserId)
       .then((response) => {
-        setJobsList(response);
+        setJobsList(response.acceptedJobs);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [jobsList]);
+
+  console.log(jobsList);
 
   return (
     <View style={styles.container}>

@@ -37,7 +37,6 @@ export default function Login({ navigation }) {
   const handleLogin = () => {
     getExistingUser(numberLogin)
       .then(({ user }) => {
-
         if (passwordLogin.length > 7) {
           setUserId(user);
           setUserDoesNotExist(false);
@@ -50,7 +49,7 @@ export default function Login({ navigation }) {
                 onPress: () => {
                   navigation.navigate(userId.is_elder ? "ElderJobs" : "Map");
                 },
-
+              },
             ]
           );
         }
