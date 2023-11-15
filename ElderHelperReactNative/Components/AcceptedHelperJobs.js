@@ -2,6 +2,7 @@ import { getAcceptedHelperJobs } from "../api";
 import { CurrentUser } from "../UserContext";
 import { useContext, useState, useEffect } from "react";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+const moment = require("moment");
 
 export default function ElderJobs() {
   const [jobsList, setJobsList] = useState([]);
@@ -28,7 +29,11 @@ export default function ElderJobs() {
           <View style={styles.card}>
             <Text style={styles.title}>{job.job_title}</Text>
             <Text style={styles.description}>{job.job_desc}</Text>
-            <Text>Expires: {job.expiry_date.slice(0, 10)}</Text>
+            <Text>
+              {" "}
+              Expires:{" "}
+              {moment(job.expiry_date.slice(0, 10)).endOf("day").fromNow()}
+            </Text>
             <Text> Status: {job.status_id}</Text>
           </View>
         ))}
