@@ -17,9 +17,15 @@ export default function JobCard({ press, setPress, navigation }) {
       <ScrollView
         horizontal
         snapToInterval={140}
-        style={styles.cardContainer}
+        style={styles.scrollView}
         scrollEventThrottle={1}
-        contentContainerStyle={styles.endPadding}
+        contentContainerStyle={styles.container}
+        onContentSizeChange={(contentWidth, contentHeight) => {
+          console.log('Content Size', contentWidth, contentHeight);
+        }}
+        onLayout={(event) => {
+          console.log('Layout Size', event.nativeEvent.layout);
+        }}
       >
         {!press ? (
           <Text style={styles.noJobsText}>Choose an area</Text>
@@ -43,21 +49,23 @@ export default function JobCard({ press, setPress, navigation }) {
               />
             </View>
           ))
-        )}
+          )}
       </ScrollView>
     </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    alignSelf: "center",
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
+  scrollView: {
+    position: 'relative',
+  },
+  container: {
+    flexDirection: "row",
     padding: 10,
   },
   card: {
-    height: "auto",
+    overflow: "hidden",
+    height: 160,
     width: 140,
     backgroundColor: "#D6EAEE",
     borderColor: "#0072BB",
@@ -65,10 +73,6 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderRadius: 20,
     margin: 3,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    flex: 1,
-    justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 6,
     elevation: 5,
-  },
+    },
   title: {
     marginTop: 18,
     fontSize: 18,
@@ -88,20 +92,7 @@ const styles = StyleSheet.create({
   description: {
     textAlign: "center",
   },
-  cardContainer: {
-    flexWrap: "wrap",
-    bottom: 0,
-    marginBottom: 5,
-    position: "absolute",
-    flexDirection: "row",
-  },
-
-  endPadding: {
-    padding: 10,
-    paddingRight: 16,
-  },
   noJobsText: {
     fontSize: 30,
-    backgroundColor: "#D6EAEE",
   },
 });

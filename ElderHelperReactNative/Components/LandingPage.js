@@ -8,10 +8,10 @@ export default function LandingPage({ navigation }) {
       <View style={styles.landingContainer}>
         <ImageBackground source={require(`../assets/Logo.png`)} resizeMode="cover" style={styles.image}/>
             <View style={styles.buttonContainer}>
+
             <Pressable
                 style={styles.button}
                 onPress={() => { navigation.navigate('Login') }}
-
               >
                 <Text style={styles.buttontext}>Login</Text>
               </Pressable>
@@ -22,6 +22,8 @@ export default function LandingPage({ navigation }) {
               >
                 <Text style={styles.buttontext}>Sign up</Text>
               </Pressable>
+                <Button color="#08495d" title="  Login  " onPress={() => { navigation.navigate('Login') }}/>
+                <Button color="#08495d" title="Sign Up" onPress={() => { navigation.navigate('SignUp') }}/>
             </View>
         <ImageBackground/>
       </View>
