@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, Pressable } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Polygon } from "react-native-maps";
 import ManchesterPostcodes from "../assets/ManchesterPostcodes.json";
 import * as Location from "expo-location";
@@ -8,12 +8,14 @@ import JobCard from "./JobCard";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SingleJob from "./SingleJob";
 import List from "./List";
+
 const Stack = createNativeStackNavigator();
 
 function Map({ navigation }) {
   const [errorMsg, setErrorMsg] = useState(null);
   const [location, setLocation] = useState(null);
   const [press, setPress] = useState(undefined);
+
 
   useEffect(() => {
     (async () => {
@@ -42,12 +44,12 @@ function Map({ navigation }) {
 
   return (
     <View style={styles.view}>
-      <Button title="List" onPress={() => navigation.navigate("List")} />
-      <Button
-        disabled={true}
-        title="Map"
-        onPress={() => navigation.navigate("Map")}
-      />
+      <View style={styles.buttonContainer}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate("JobsList")}>
+          <Text style={styles.buttonText} >Job List View</Text>
+        </Pressable>
+        {/* <Button title="Job List" onPress={() => navigation.navigate("JobsList")} /> */}
+      </View>
       <MapView
         initialRegion={{
           latitude: 53.4808,
@@ -117,14 +119,36 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    flex: 1,
+    // flex: 1,
     fontSize: 30,
     color: "#66B2FF",
     textAlign: "center",
     marginTop: 30,
   },
   view: {
+    flex: 1,
     height: "100%",
     width: "100%",
+    backgroundColor: '#ede7d7',
   },
+  buttonContainer: {
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#08495d',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 5,
+    elevation: 3,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: '#ede7d7',
+    fontWeight: 'bold',
+    fontSize: 16,
+    letterSpacing: 0.25,
+    lineHeight: 21,
+  }
 });
