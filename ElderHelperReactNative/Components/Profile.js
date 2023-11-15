@@ -1,20 +1,25 @@
-import React, { useContext, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Pressable,
-  SafeAreaView,
-} from "react-native";
+import React, { useContext, useState, useCallback } from "react";
+import { View, Text, StyleSheet, Image, Button, Pressable, Alert, SafeAreaView} from "react-native";
 import { CurrentUser } from "../UserContext";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useFocusEffect } from '@react-navigation/native';
 import EditProfile from "./EditProfile";
+import { getExistingUser } from "../api";
 
 const Stack = createNativeStackNavigator();
 
 function Profile({ navigation }) {
   const { userId, setUserId } = useContext(CurrentUser);
+  const [user, setUser] = useState({})
+  
+
+  useFocusEffect(
+    useCallback(() => {
+      getExistingUser(userId.phone_number).then(({ user }) => {
+        setUser(user);
+      });
+    }, [userId.phone_number])
+  );
 
   return (
     <SafeAreaView style={{ backgroundColor: "#EDE7D7" }}>
@@ -22,22 +27,22 @@ function Profile({ navigation }) {
         <Image
           style={styles.profilePic}
           source={{
-            uri: userId.avatar_url,
+            uri: user.avatar_url,
           }}
         ></Image>
       </View>
       <View style={styles.nameView}>
         <Text style={styles.name}>
-          {userId.first_name} {userId.surname}
+          {user.first_name} {user.surname}
         </Text>
       </View>
       <View style={styles.profileView}>
         <Text style={styles.category}>Phone number</Text>
-        <Text style={styles.info}>{userId.phone_number}</Text>
+        <Text style={styles.info}>{user.phone_number}</Text>
         <Text style={styles.category}>Postcode</Text>
-        <Text style={styles.info}>{userId.postcode}</Text>
+        <Text style={styles.info}>{user.postcode}</Text>
         <Text style={styles.category}>Profile message</Text>
-        <Text style={styles.info}>{userId.profile_msg}</Text>
+        <Text style={styles.info}>{user.profile_msg}</Text>
       </View>
       <View>
         <Pressable
