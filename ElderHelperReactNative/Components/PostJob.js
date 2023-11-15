@@ -8,6 +8,9 @@ import {
   View,
   StyleSheet,
   Modal,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import DatePicker from "react-native-modern-datepicker";
 import { getFormatedDate } from "react-native-modern-datepicker";
@@ -53,52 +56,65 @@ export default PostJob = () => {
   };
 
   return (
-    <View style={styles.form}>
-      <View style={styles.question}>
-        <Text style={styles.labels}>Job Title</Text>
-        <TextInput
-          placeholder="e.g. Dog walking"
-          style={styles.textInput}
-          onChangeText={(value) => setTitle(value)}
-        ></TextInput>
-      </View>
-      <View style={styles.question}>
-        <Text style={styles.labels}>Job Description</Text>
-        <TextInput
-          placeholder="e.g. I need a daily dog walker for my two dogs"
-          style={styles.bigTextInput}
-          onChangeText={(value) => setDesc(value)}
-        ></TextInput>
-      </View>
-      <View>
-        <Text style={styles.labels}>Deadline: {expiryDate}</Text>
-        <Button title="Select deadline" onPress={handleOnPress} />
-        <Modal animationType="slide" transparent={true} visible={open}>
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <DatePicker
-                options={{
-                  textHeaderColor: "#0072BB",
-                  textDefaultColor: "#0072BB",
-                  selectedTextColor: "#0072BB",
-                  mainColor: "#9DD8E7",
-                  textSecondaryColor: "#D6EAEE",
-                }}
-                mode="calendar"
-                minimumDate={tomorrow}
-                selected={expiryDate}
-                onSelectedChange={(date) => setExpiryDate(date)}
-              />
-              <Button title="Select Date" onPress={handleOnPress} />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "android" ? "padding" : "height"}
+    >
+      <SafeAreaView style={{ backgroundColor: "#9DD8E7", flex: 0 }}>
+        <ScrollView
+          contentContainerStyle={{
+            paddingTop: 50,
+            paddingHorizontal: 20,
+          }}
+        >
+          <View style={styles.form}>
+            <View style={styles.question}>
+              <Text style={styles.labels}>Job Title</Text>
+              <TextInput
+                placeholder="e.g. Dog walking"
+                style={styles.textInput}
+                onChangeText={(value) => setTitle(value)}
+              ></TextInput>
             </View>
+            <View style={styles.question}>
+              <Text style={styles.labels}>Job Description</Text>
+              <TextInput
+                placeholder="e.g. I need a daily dog walker for my two dogs"
+                style={styles.bigTextInput}
+                onChangeText={(value) => setDesc(value)}
+              ></TextInput>
+            </View>
+            <View>
+              <Text style={styles.labels}>Deadline: {expiryDate}</Text>
+              <Button title="Select deadline" onPress={handleOnPress} />
+              <Modal animationType="slide" transparent={true} visible={open}>
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <DatePicker
+                      options={{
+                        textHeaderColor: "#0072BB",
+                        textDefaultColor: "#0072BB",
+                        selectedTextColor: "#0072BB",
+                        mainColor: "#9DD8E7",
+                        textSecondaryColor: "#D6EAEE",
+                      }}
+                      mode="calendar"
+                      minimumDate={tomorrow}
+                      selected={expiryDate}
+                      onSelectedChange={(date) => setExpiryDate(date)}
+                    />
+                    <Button title="Select Date" onPress={handleOnPress} />
+                  </View>
+                </View>
+              </Modal>
+            </View>
+            <View style={styles.buttons}>
+              <Button title="Post job" onPress={validation} />
+            </View>
+            <Text>{submitMessage}</Text>
           </View>
-        </Modal>
-      </View>
-      <View style={styles.buttons}>
-        <Button title="Post job" onPress={validation} />
-      </View>
-      <Text>{submitMessage}</Text>
-    </View>
+        </ScrollView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 
