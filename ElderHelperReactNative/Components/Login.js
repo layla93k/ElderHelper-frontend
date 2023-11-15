@@ -17,11 +17,15 @@ import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Login({ navigation }) {
+  const [passwordMsg, setPasswordMsg] = useState("");
   const [numberLogin, onChangeNumberLogin] = useState("");
   const [passwordLogin, onChangePasswordLogin] = useState("");
   const [userDoesNotExist, setUserDoesNotExist] = useState(false);
 
   const validate = () => {
+    if (passwordLogin.length < 7) {
+      setPasswordMsg("Password must contain at least 7 characters");
+    }
     if (!numberLogin || !passwordLogin) {
       Alert.alert("All fields are required");
       return;
@@ -33,21 +37,23 @@ export default function Login({ navigation }) {
   const handleLogin = () => {
     getExistingUser(numberLogin)
       .then(({ user }) => {
-        setUserId(user);
-        // console.log(userId, "userId");
-        setUserDoesNotExist(false);
-        Alert.alert(
-          "Successfully logged in",
-          `Welcome back ${user.first_name}!`,
-          [
-            {
-              text: "OK",
-              onPress: () => {
-                navigation.navigate(userId.is_elder ? "ElderJobs" : "Map");
-              },
-            },
-          ]
-        );
+
+        if (passwordLogin.length > 7) {
+          setUserId(user);
+          setUserDoesNotExist(false);
+          Alert.alert(
+            "Successfully logged in",
+            `Welcome back ${user.first_name}!`,
+            [
+              {
+                text: "OK",
+                onPress: () => {
+                  navigation.navigate(userId.is_elder ? "ElderJobs" : "Map");
+                },
+
+            ]
+          );
+        }
       })
       .catch((err) => {
         setUserDoesNotExist(true);
@@ -112,6 +118,9 @@ export default function Login({ navigation }) {
           </View>
         </View>
         <View>
+          <View>
+            <Text style={style.passwordMessage}>{passwordMsg}</Text>
+          </View>
           <Text style={style.signuplink}>
             If you do not have a login, click{" "}
             <TouchableOpacity
@@ -207,5 +216,8 @@ const style = StyleSheet.create({
     paddingTop: 10,
     fontSize: 22,
     color: "white",
+  },
+  passwordMessage: {
+    color: "red",
   },
 });
