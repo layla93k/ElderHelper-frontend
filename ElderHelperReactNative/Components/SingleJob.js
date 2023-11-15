@@ -21,6 +21,7 @@ export default SingleJobNav = ({ route }) => {
   const SingleJob = ({ navigation }) => {
     const { userId, setUserId } = useContext(CurrentUser);
     const id = jobData.job.job_id;
+    console.log(userId);
 
     const [jobWithUser, setJobWithUser] = useState({});
     const acceptHandler = (e) => {
@@ -141,7 +142,7 @@ export default SingleJobNav = ({ route }) => {
             <Button title="Edit job" onPress={editOwnJobHandler}></Button>
           )}
 
-        {jobWithUser.status_id === 1 && userId.is_elder == "false" && (
+        {jobWithUser.status_id === 1 && userId.is_elder === false && (
           <Button title="Accept job" onPress={acceptHandler}></Button>
         )}
 
@@ -158,13 +159,13 @@ export default SingleJobNav = ({ route }) => {
         )}
 
         {jobWithUser.status_id === 2 &&
-          userId.is_elder == "false" &&
+          userId.is_elder === false &&
           userId.user_id === jobWithUser.helper_id && (
             <Button title="Cancel job" onPress={cancelHandler}></Button>
           )}
 
         {jobWithUser.status_id !== 2 &&
-          userId.is_elder == "true" &&
+          userId.is_elder === true &&
           userId.user_id === jobWithUser.elder_id && (
             <Button title="Delete job" onPress={deleteOwnJobHandler}></Button>
           )}

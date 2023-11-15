@@ -21,8 +21,8 @@ export default function ElderJobs() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Your requested jobs</Text>
-      {elderJobsList.map((job, index) => (
-        <View style={styles.card}>
+      {elderJobsList.map((job) => (
+        <View style={styles.card} key={job.job_id}>
           <Text style={styles.title}>{job.job_title}</Text>
           <Text style={styles.description}>{job.job_desc}</Text>
           <Text>Expires: {job.expiry_date.slice(0, 10)}</Text>

@@ -34,6 +34,7 @@ export default function Login({ navigation }) {
     getExistingUser(numberLogin)
       .then(({ user }) => {
         setUserId(user);
+        // console.log(userId, "userId");
         setUserDoesNotExist(false);
         Alert.alert(
           "Successfully logged in",
@@ -197,7 +198,7 @@ const style = StyleSheet.create({
     backgroundColor: "#0072BB",
     width: 180,
     height: 60,
-    flex: "row",
+    flexDirection: "row",
     alignSelf: "center",
   },
   text: {
