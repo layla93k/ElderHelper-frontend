@@ -93,7 +93,7 @@ export function HomeTabs() {
             tabBarIcon: ({ focused }) => (
               <View style={{ alignItems: "center", justifyContent: "center" }}>
                 <Image
-                  source={require("../assets/Jobs.png")}
+                  source={require("../assets/MyJobs.png")}
                   resizeMode="contain"
                   style={{
                     width: 25,
@@ -167,7 +167,7 @@ export function HomeTabs() {
             tabBarIcon: ({ focused }) => (
               <View style={{ alignItems: "center", justifyContent: "center" }}>
                 <Image
-                  source={require("../assets/Profile.png")}
+                  source={require("../assets/MyJobs.png")}
                   resizeMode="contain"
                   style={{
                     width: 25,
