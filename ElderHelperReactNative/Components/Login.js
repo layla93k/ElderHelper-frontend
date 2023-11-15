@@ -206,7 +206,7 @@ const style = StyleSheet.create({
     backgroundColor: "#0072BB",
     width: 180,
     height: 60,
-    flexDirection: "row",
+    flex: "row",
     alignSelf: "center",
   },
   text: {
