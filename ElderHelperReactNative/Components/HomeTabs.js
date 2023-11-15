@@ -10,10 +10,7 @@ import ElderJobs from "./ElderJobs";
 
 export function HomeTabs() {
   const Tab = createBottomTabNavigator();
-  // const { userId } = useContext(CurrentUser); //UNCOMMENT
-  const userId = { //DELETE
-    is_elder: false //DELETE
-  } //DELETE
+  const { userId } = useContext(CurrentUser);
   if (!userId.is_elder) {
     return (
       <Tab.Navigator

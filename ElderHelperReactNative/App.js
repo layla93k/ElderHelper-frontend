@@ -14,7 +14,7 @@ export default function App() {
   return (
     <UserContext>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Map">
+        <Stack.Navigator initialRouteName="LandingPage">
           <Stack.Screen
             name="LandingPage"
             component={LandingPage}
