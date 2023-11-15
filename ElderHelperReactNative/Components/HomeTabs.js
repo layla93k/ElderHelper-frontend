@@ -12,7 +12,6 @@ import AcceptedHelperJobs from "./AcceptedHelperJobs";
 export function HomeTabs() {
   const Tab = createBottomTabNavigator();
   const { userId } = useContext(CurrentUser);
-
   if (!userId.is_elder) {
     return (
       <Tab.Navigator

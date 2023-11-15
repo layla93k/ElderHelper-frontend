@@ -146,9 +146,6 @@ export default function Login({ navigation }) {
   );
 }
 
-{
-}
-
 const style = StyleSheet.create({
   text: {
     flex: 1,
