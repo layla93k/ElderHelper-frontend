@@ -64,7 +64,7 @@ export default function Login({ navigation }) {
     navigation.navigate("SignUp");
   };
   return (
-    <SafeAreaView style={{ backgroundColor: "#9DD8E7", height: "100%" }}>
+    <SafeAreaView style={{ backgroundColor: "#EDE7D7", height: "100%" }}>
       <ScrollView
         contentContainerStyle={{
           paddingTop: 50,
@@ -73,7 +73,7 @@ export default function Login({ navigation }) {
       >
         <Text
           style={{
-            color: "black",
+            color: '#08495d',
             fontSize: 40,
             fontWeight: "bold",
             marginTop: 140,
@@ -157,13 +157,17 @@ const style = StyleSheet.create({
   signuplink: {
     marginLeft: 15,
     marginBottom: 10,
+    color: '#08495d',
+    
   },
   highlight: {
     fontWeight: "bold",
   },
   label: {
     marginVertical: 5,
-    fontSize: 14,
+    fontSize: 15,
+    color: '#08495d',
+    fontWeight: 'bold',
   },
   userDoesntExist: {
     color: "red",
@@ -172,7 +176,7 @@ const style = StyleSheet.create({
   inputContainer: {
     height: 60,
     marginBottom: 10,
-    backgroundColor: "#D6EAEE",
+    backgroundColor: "#b3e3e3",
     flexDirection: "row",
     marginHorizontal: 15,
     borderWidth: 0.5,
@@ -180,7 +184,7 @@ const style = StyleSheet.create({
   },
   icon: {
     marginLeft: 10,
-    color: "#C0C0C0",
+    color: "#08495d",
   },
   title: {
     textAlign: "center",
@@ -200,18 +204,20 @@ const style = StyleSheet.create({
     marginTop: 10,
     borderRadius: 10,
     padding: 5,
-    backgroundColor: "#0072BB",
+    backgroundColor: "#08495d",
     width: 180,
     height: 60,
     flexDirection: "row",
     alignSelf: "center",
+    justifyContent: "center",
+    elevation: 5,
   },
   text: {
     justifyContent: "center",
     textAlign: "center",
     paddingTop: 10,
     fontSize: 22,
-    color: "white",
+    color: "#ede7d7",
   },
   passwordMessage: {
     color: "red",

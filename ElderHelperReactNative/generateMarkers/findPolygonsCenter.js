@@ -16,7 +16,7 @@ function generateJSXMarkers() {
   
       // Generating JSX as string
       return (
-      `<Marker coordinate={{ latitude: ${latitude.toFixed(5)}, longitude: ${longitude.toFixed(5)} }}>
+      `<Marker coordinate={{ latitude: ${latitude.toFixed(5)}, longitude: ${longitude.toFixed(5)} }} onPress={(e) => {handlePress("${area.properties.name}")}}>
         <View style={styles.customMarkerView}>
           <Text style={styles.markerText}>${area.properties.name}</Text>
         </View>

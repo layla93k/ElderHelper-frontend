@@ -21,29 +21,33 @@ export default function JobCard({ press, setPress, navigation }) {
         scrollEventThrottle={1}
         contentContainerStyle={styles.endPadding}
       >
-        {!press ? (
-          <Text style={styles.noJobsText}>Choose an area</Text>
-        ) : jobs.length === 0 ? (
-          <Text style={styles.noJobsText}> No jobs in {press}</Text>
-        ) : (
-          jobs.map((job, index) => (
-            <View key={index} style={styles.card}>
-              <Text style={styles.title}>{job.job_title}</Text>
-              <Text style={styles.description} numberOfLines={3}>
-                {job.job_desc}
-              </Text>
-              <Button
-                title="more info"
-                style={styles.button}
-                onPress={() =>
-                  navigation.navigate("SingleJob", {
-                    jobData: { job },
-                  })
-                }
-              />
-            </View>
-          ))
-        )}
+        <View style={styles.container}>
+          {!press ? (
+            <Text style={styles.noJobsText}>Choose an area</Text>
+          ) : jobs.length === 0 ? (
+            <Text style={styles.noJobsText}>
+              Sorry, unfortunately there are no jobs in {press}
+            </Text>
+          ) : (
+            jobs.map((job, index) => (
+              <View key={index} style={styles.card}>
+                <Text style={styles.title}>{job.job_title}</Text>
+                <Text style={styles.description} numberOfLines={3}>
+                  {job.job_desc}
+                </Text>
+                <Button
+                  title="more info"
+                  style={styles.button}
+                  onPress={() =>
+                    navigation.navigate("SingleJob", {
+                      jobData: { job },
+                    })
+                  }
+                />
+              </View>
+            ))
+          )}
+        </View>
       </ScrollView>
     </GestureHandlerRootView>
   );
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   card: {
-    height: 160,
+    height: "auto",
     width: 140,
     backgroundColor: "#D6EAEE",
     borderColor: "#0072BB",
@@ -67,7 +71,6 @@ const styles = StyleSheet.create({
     margin: 3,
     flexDirection: "row",
     flexWrap: "wrap",
-    flex: 1,
     justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -77,6 +80,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 6,
     elevation: 5,
+  },
+  container: {
+    flexDirection: "row",
+    overflow: "scroll",
   },
   title: {
     marginTop: 18,
@@ -89,7 +96,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   cardContainer: {
-    flexWrap: "wrap",
+    height: 200,
+    flexWrap: "nowrap",
     bottom: 0,
     marginBottom: 5,
     position: "absolute",
@@ -101,7 +109,11 @@ const styles = StyleSheet.create({
     paddingRight: 16,
   },
   noJobsText: {
-    fontSize: 30,
+    fontSize: 20,
     backgroundColor: "#D6EAEE",
+    height: 50,
+    borderWidth: 1,
+    padding: 5,
+    borderRadius: 10,
   },
 });

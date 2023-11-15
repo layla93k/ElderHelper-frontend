@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback } from "react";
-import { View, Text, StyleSheet, Image, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, Image, Button, Pressable, Alert, SafeAreaView} from "react-native";
 import { CurrentUser } from "../UserContext";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFocusEffect } from '@react-navigation/native';
@@ -22,7 +22,7 @@ function Profile({ navigation }) {
   );
 
   return (
-    <View>
+    <SafeAreaView style={{ backgroundColor: "#EDE7D7" }}>
       <View style={styles.profilePicView}>
         <Image
           style={styles.profilePic}
@@ -44,13 +44,15 @@ function Profile({ navigation }) {
         <Text style={styles.category}>Profile message</Text>
         <Text style={styles.info}>{user.profile_msg}</Text>
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Update Profile"
+      <View>
+        <Pressable
+          style={styles.button}
           onPress={() => navigation.navigate("Edit Profile")}
-        ></Button>
+        >
+          <Text style={styles.buttonText}>Update Profile</Text>
+        </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -77,31 +79,39 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#9DD8E7",
+    zIndex: 1,
   },
   profileView: {
     paddingTop: 10,
+    backgroundColor: "#EDE7D7",
   },
   nameView: {
     paddingTop: 100,
+    backgroundColor: "#EDE7D7",
   },
   category: {
     fontWeight: "bold",
     paddingLeft: 20,
+    backgroundColor: "#EDE7D7",
   },
   name: {
     fontWeight: "bold",
     fontSize: 40,
     textAlign: "center",
+    color: "#08495d",
   },
   info: {
+    backgroundColor: "#EDE7D7",
     margin: 15,
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#ffffff",
-    backgroundColor: "white",
+    borderWidth: 0.5,
+    borderColor: "#08495d",
+    backgroundColor: "#b3e3e3",
+    fontSize: 18,
   },
   profilePic: {
     width: 150,
@@ -109,6 +119,27 @@ const styles = StyleSheet.create({
     borderRadius: 150,
   },
   button: {
+    padding: 5,
+    marginTop: 10,
+    borderRadius: 10,
+    padding: 5,
+    backgroundColor: "#08495d",
+    width: 180,
+    height: 60,
+    flex: "row",
+    alignSelf: "center",
+  },
+  buttonText: {
+    backgroundColor: "#08495d",
+    justifyContent: "center",
+    textAlign: "center",
     paddingTop: 10,
+    fontSize: 22,
+    color: "white",
+  },
+  category: {
+    fontSize: 20,
+    marginLeft: 15,
+    color: "#08495d",
   },
 });

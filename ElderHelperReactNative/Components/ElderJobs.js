@@ -17,8 +17,7 @@ export default function ElderJobs() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-  console.log(elderJobsList);
+  }, [elderJobsList]);
 
   const statusMap = {
     1: "Requested",
@@ -29,19 +28,31 @@ export default function ElderJobs() {
 
   return (
     <ScrollView vertical>
-      <View style={styles.container}>
+      <View style={styles.jobsListContainer}>
         <Text style={styles.text}>Your requested jobs</Text>
         {elderJobsList.map((job) => (
-          <View style={styles.card} key={job.job_id}>
-            <Text style={styles.title}>{job.job_title}</Text>
-            <Text style={styles.description}>{job.job_desc}</Text>
-            <Text style={styles.expiration}>
+          <View style={styles.job} key={job.job_id}>
+            <Text style={styles.jobTitle}>{job.job_title}</Text>
+            <Text style={styles.jobInfo}>{job.job_desc}</Text>
+
+            <Text
+              style={
+                job.status_id === 1
+                  ? styles.jobTextrequested
+                  : job.status_id === 2
+                  ? styles.acceptedStatus
+                  : job.status_id === 3
+                  ? styles.jobTextCompleted
+                  : job.status_id === 4
+                  ? styles.jobTextExpired
+                  : null
+              }
+            >
+              {statusMap[job.status_id]}
+            </Text>
+            <Text style={styles.jobTextExp}>
               Expires:{" "}
               {moment(job.expiry_date.slice(0, 10)).endOf("day").fromNow()}
-            </Text>
-            <Text style={styles.status}>
-              {" "}
-              Status: {statusMap[job.status_id]}
             </Text>
           </View>
         ))}
@@ -51,43 +62,83 @@ export default function ElderJobs() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#D6EAEE",
-  },
-  expiration: {
-    fontSize: 20,
-    marginLeft: 10,
-    color: "red",
-  },
-  status: {
-    fontSize: 20,
-    marginLeft: 4,
-    marginTop: 5,
-  },
   text: {
-    fontSize: 30,
+    fontSize: 40,
+    color: "#08495d",
+    marginBottom: 15,
   },
-  title: {
-    fontSize: 35,
+  jobsListContainer: {
+    flex: 1,
+    backgroundColor: "#ede7d7",
+    padding: 8,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  job: {
+    backgroundColor: "#b3e3e3",
+    borderRadius: 15,
+    // borderWidth: 1,
+    borderColor: "#08495d",
+    flex: 1,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 18,
+    paddingRight: 18,
+    marginLeft: 12,
+    marginRight: 12,
+    marginTop: 0,
+    marginBottom: 15,
+    height: "auto",
+    width: 350,
+    elevation: 5,
+  },
+  jobTitle: {
+    color: "#08495d",
+    alignSelf: "center",
+    marginBottom: 10,
     fontWeight: "bold",
-  },
-  description: {
     fontSize: 20,
+  },
+  jobInfo: {
+    justifyContent: "space-evenly",
+    alignContent: "center",
+    fontSize: 17,
+    textAlign: "center",
     marginBottom: 10,
   },
-  card: {
-    shadowOffset: {
-      width: 3,
-      height: 5,
-    },
-    marginTop: 10,
-    height: 200,
-    backgroundColor: "#D6EAEE",
-    borderColor: "#0072BB",
-    borderWidth: 5,
-    borderStyle: "solid",
-    borderRadius: 20,
-    padding: 5,
+  jobTextrequested: {
+    textAlign: "center",
+    color: "#08495d",
+    fontSize: 20,
+    marginBottom: 5,
+    fontStyle: "italic",
+  },
+  jobTextExp: {
+    textAlign: "center",
+    color: "#08495d",
+    fontSize: 15,
+    marginBottom: 5,
+  },
+  acceptedStatus: {
+    color: "green",
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 5,
+    fontWeight: "bold",
+  },
+  jobTextExpired: {
+    color: "red",
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 5,
+    fontWeight: "bold",
+  },
+  jobTextCompleted: {
+    color: "#08495d",
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 5,
+    fontWeight: "bold",
   },
 });
