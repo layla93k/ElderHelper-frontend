@@ -11,10 +11,12 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   ScrollView,
+  Pressable,
 } from "react-native";
 import DatePicker from "react-native-modern-datepicker";
 import { getFormatedDate } from "react-native-modern-datepicker";
 import { CurrentUser } from "../UserContext";
+const moment = require("moment");
 
 export default PostJob = () => {
   const today = new Date();
@@ -25,6 +27,7 @@ export default PostJob = () => {
   const [expiryDate, setExpiryDate] = useState(tomorrow);
   const [submitMessage, setSubmitMessage] = useState("");
   const { userId, setUserId } = useContext(CurrentUser);
+  const [confirmedExpiry, setConfirmedExpiry] = useState(false);
 
   const validation = () => {
     if (!title) {
@@ -56,65 +59,76 @@ export default PostJob = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "android" ? "padding" : "height"}
-    >
-      <SafeAreaView style={{ backgroundColor: "#9DD8E7", flex: 0 }}>
-        <ScrollView
-          contentContainerStyle={{
-            paddingTop: 50,
-            paddingHorizontal: 20,
-          }}
-        >
-          <View style={styles.form}>
-            <View style={styles.question}>
-              <Text style={styles.labels}>Job Title</Text>
-              <TextInput
-                placeholder="e.g. Dog walking"
-                style={styles.textInput}
-                onChangeText={(value) => setTitle(value)}
-              ></TextInput>
-            </View>
-            <View style={styles.question}>
-              <Text style={styles.labels}>Job Description</Text>
-              <TextInput
-                placeholder="e.g. I need a daily dog walker for my two dogs"
-                style={styles.bigTextInput}
-                onChangeText={(value) => setDesc(value)}
-              ></TextInput>
-            </View>
-            <View>
-              <Text style={styles.labels}>Deadline: {expiryDate}</Text>
-              <Button title="Select deadline" onPress={handleOnPress} />
-              <Modal animationType="slide" transparent={true} visible={open}>
-                <View style={styles.centeredView}>
-                  <View style={styles.modalView}>
-                    <DatePicker
-                      options={{
-                        textHeaderColor: "#0072BB",
-                        textDefaultColor: "#0072BB",
-                        selectedTextColor: "#0072BB",
-                        mainColor: "#9DD8E7",
-                        textSecondaryColor: "#D6EAEE",
-                      }}
-                      mode="calendar"
-                      minimumDate={tomorrow}
-                      selected={expiryDate}
-                      onSelectedChange={(date) => setExpiryDate(date)}
-                    />
-                    <Button title="Select Date" onPress={handleOnPress} />
-                  </View>
-                </View>
-              </Modal>
-            </View>
-            <View style={styles.buttons}>
-              <Button title="Post job" onPress={validation} />
-            </View>
-            <Text>{submitMessage}</Text>
+    <SafeAreaView style={{ backgroundColor: "#ede7d7", flex: 1 }}>
+      <ScrollView
+        contentContainerStyle={{
+          paddingTop: 50,
+          paddingHorizontal: 20,
+        }}
+      >
+        <View style={styles.form}>
+          <View style={styles.question}>
+            <Text style={styles.labels}>Job Title</Text>
+            <TextInput
+              placeholder="e.g. Dog walking"
+              style={styles.textInput}
+              onChangeText={(value) => setTitle(value)}
+            ></TextInput>
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+          <View style={styles.question}>
+            <Text style={styles.labels}>Job Description</Text>
+            <TextInput
+              placeholder="e.g. I need a daily dog walker for my two dogs"
+              style={styles.bigTextInput}
+              multiline
+              onChangeText={(value) => setDesc(value)}
+            ></TextInput>
+          </View>
+          <View>
+            <Text style={styles.labels}>When do you need this done by?</Text>
+
+            <Pressable onPress={handleOnPress} style={styles.button}>
+              <Text style={styles.buttonText}>Select Date</Text>
+            </Pressable>
+            <Text style={styles.date}>
+              {confirmedExpiry ? expiryDate : null}
+            </Text>
+
+            <Modal animationType="slide" transparent={true} visible={open}>
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <DatePicker
+                    options={{
+                      textHeaderColor: "#0072BB",
+                      textDefaultColor: "#0072BB",
+                      selectedTextColor: "#0072BB",
+                      mainColor: "#9DD8E7",
+                      textSecondaryColor: "#D6EAEE",
+                    }}
+                    mode="calendar"
+                    minimumDate={tomorrow}
+                    selected={expiryDate}
+                    onSelectedChange={(date) => {
+                      setExpiryDate(date);
+                      setConfirmedExpiry(true);
+                    }}
+                  />
+                  <Pressable onPress={handleOnPress} style={styles.button}>
+                    <Text style={styles.buttonText}>Select</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </Modal>
+          </View>
+          <View>
+            <Pressable onPress={validation} style={styles.button}>
+              <Text style={styles.buttonText}>Post job</Text>
+            </Pressable>
+          </View>
+          <Text>{submitMessage}</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -126,23 +140,27 @@ const styles = StyleSheet.create({
   },
   labels: {
     fontWeight: "bold",
-    paddingTop: 30,
+    paddingTop: 20,
     paddingBottom: 10,
+    fontSize: 20,
+    color: "#08495d",
   },
   textInput: {
+    fontSize: 20,
+    width: 350,
+    backgroundColor: "#B3E3E3",
     padding: 10,
-    height: 40,
-    borderWidth: 1,
-    borderColor: "#000000",
-    backgroundColor: "#ffffff",
+    borderWidth: 0.5,
     borderRadius: 5,
   },
   bigTextInput: {
+    fontSize: 20,
     height: 150,
     padding: 10,
-    borderWidth: 1,
+    borderWidth: 0.5,
+    width: 350,
     borderColor: "#000000",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#B3E3E3",
     borderRadius: 5,
   },
   expDate: {
@@ -160,8 +178,38 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 22,
   },
-  buttons: {
-    paddingTop: 100,
-    paddingBottom: 10,
+  button: {
+    backgroundColor: "#08495d",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 5,
+    elevation: 3,
+    marginTop: 10,
+    marginLeft: 80,
+    width: 200,
+    textAlign: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#ede7d7",
+    fontWeight: "bold",
+    fontSize: 16,
+    letterSpacing: 0.25,
+    lineHeight: 21,
+  },
+  date: {
+    fontSize: 28,
+    marginBottom: 20,
+    color: "#08495d",
+    padding: 5,
+    marginLeft: 70,
+    margin: 10,
+    textAlign: "left",
+    backgroundColor: "#B3E3E3",
+    height: 45,
+    borderWidth: 0.5,
+    borderRadius: 5,
+    alignContent: "center",
+    textAlign: "center",
   },
 });
