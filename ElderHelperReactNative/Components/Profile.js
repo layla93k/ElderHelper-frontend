@@ -9,30 +9,38 @@ const Stack = createNativeStackNavigator();
 function Profile({ navigation }) {
   const { userId, setUserId } = useContext(CurrentUser);
 
-    return (
-<View>
-    <View style = {styles.profilePicView}>
-        <Image style = {styles.profilePic}
-        source={{
-          uri: userId.avatar_url,
-        }}></Image></View>
-        <View style = {styles.nameView}>
-         <Text style = {styles.name}>{userId.first_name} {userId.surname}</Text>
-         </View>
-         <View style = {styles.profileView}>
-         <Text style = {styles.category}>Phone number</Text>
-    <Text style = {styles.info}>{userId.phoneNumber}</Text>
-    <Text style = {styles.category}>Postcode</Text>
-    <Text style = {styles.info}>{userId.postcode}</Text>
-    <Text style = {styles.category}>Profile message</Text>
-    <Text style = {styles.info}>{userId.profile_msg}</Text>
+  return (
+    <View>
+      <View style={styles.profilePicView}>
+        <Image
+          style={styles.profilePic}
+          source={{
+            uri: userId.avatar_url,
+          }}
+        ></Image>
+      </View>
+      <View style={styles.nameView}>
+        <Text style={styles.name}>
+          {userId.first_name} {userId.surname}
+        </Text>
+      </View>
+      <View style={styles.profileView}>
+        <Text style={styles.category}>Phone number</Text>
+        <Text style={styles.info}>{userId.phone_number}</Text>
+        <Text style={styles.category}>Postcode</Text>
+        <Text style={styles.info}>{userId.postcode}</Text>
+        <Text style={styles.category}>Profile message</Text>
+        <Text style={styles.info}>{userId.profile_msg}</Text>
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Update Profile"
+          onPress={() => navigation.navigate("Edit Profile")}
+        ></Button>
+      </View>
     </View>
-    <View style = {styles.button}>
-    <Button title = 'Update Profile' onPress={() => navigation.navigate('Edit Profile')}></Button>
-    </View>
-    </View>
-  )}
-
+  );
+}
 
 export default function ProfileNav() {
   return (
@@ -91,4 +99,4 @@ const styles = StyleSheet.create({
   button: {
     paddingTop: 10,
   },
-})
+});

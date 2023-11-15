@@ -50,6 +50,7 @@ export const patchJob = async (updatedJob, job_id) => {
 
 export const getExistingUser = async (phoneNumber) => {
   return await request.get(`/users/${phoneNumber}`).then(({ data }) => {
+    // console.log(data);
     return data;
   });
 };
@@ -66,9 +67,11 @@ export const getJobsUsers = async () => {
   });
 };
 export const updateProfile = async (newProfile, user_id) => {
+  console.log(newProfile, user_id);
   return await request
     .patch(`/users/${user_id}`, newProfile)
     .then(({ data }) => {
+      console.log(data);
       return data;
     });
 };
