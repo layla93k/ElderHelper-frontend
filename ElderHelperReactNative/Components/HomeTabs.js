@@ -7,11 +7,11 @@ import ChatRooms from "./ChatRooms";
 import Profile from "./Profile";
 import PostJob from "./PostJob";
 import ElderJobs from "./ElderJobs";
+import AcceptedHelperJobs from "./AcceptedHelperJobs";
 
 export function HomeTabs() {
   const Tab = createBottomTabNavigator();
   const { userId } = useContext(CurrentUser);
-
   if (!userId.is_elder) {
     return (
       <Tab.Navigator
@@ -80,6 +80,34 @@ export function HomeTabs() {
                 >
                   {" "}
                   Profile{" "}
+                </Text>
+              </View>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Your Jobs"
+          component={AcceptedHelperJobs}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <View style={{ alignItems: "center", justifyContent: "center" }}>
+                <Image
+                  source={require("../assets/Jobs.png")}
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
+                />
+                <Text
+                  style={{
+                    color: focused ? "#e32f45" : "#748c94",
+                    fontSize: 12,
+                  }}
+                >
+                  {" "}
+                  Your Jobs{" "}
                 </Text>
               </View>
             ),

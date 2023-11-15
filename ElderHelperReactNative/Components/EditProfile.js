@@ -13,10 +13,10 @@ import { CurrentUser } from "../UserContext";
 
 export default EditProfile = () => {
   const { userId } = useContext(CurrentUser);
-  const [phoneNo, setPhoneNo] = useState(userId.phoneNumber);
+  const [phoneNo, setPhoneNo] = useState(userId.phone_number);
   const [firstName, setFirstName] = useState(userId.first_name);
   const [surname, setSurname] = useState(userId.surname);
-  const [elderStatus] = useState(userId.isElder);
+  const [elderStatus] = useState(userId.is_elder);
   const [postcode, setPostcode] = useState(userId.postcode);
   const [profileImage, setProfileImage] = useState(userId.avatar_url);
   const [profileText, setProfileText] = useState(userId.profile_msg);
@@ -87,9 +87,9 @@ export default EditProfile = () => {
       ></TextInput>
       <Text>Phone number:</Text>
       <TextInput
-        placeholder={userId.phoneNumber}
+        placeholder={userId.phone_number}
         style={styles.textInput}
-        defaultValue={userId.phoneNumber}
+        defaultValue={userId.phone_number}
         onChangeText={(value) => setPhoneNo(value)}
       ></TextInput>
 

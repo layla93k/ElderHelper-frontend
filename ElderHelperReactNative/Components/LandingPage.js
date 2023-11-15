@@ -1,5 +1,5 @@
 
-import { StyleSheet, View, Text, Button, Image, ImageBackground } from "react-native";
+import { StyleSheet, View, Button, ImageBackground } from "react-native";
 
 
 export default function LandingPage({ navigation }) {

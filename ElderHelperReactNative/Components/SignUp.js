@@ -4,7 +4,7 @@ import {
   ScrollView,
   SafeAreaView,
   View,
-  Button,
+  KeyboardAvoidingView,
   Alert,
   TextInput,
   Pressable,
@@ -59,12 +59,14 @@ export default function App({ navigation }) {
   const handleSignup = () => {
     postNewUser(newUser)
       .then((response) => {
-        Alert.alert(
-          "Registration successful!",
-          `Welcome to Elder Helper ${newUser.first_name}!`
-        );
-        navigation.navigate("Login");
-        return;
+        if (password.length > 7) {
+          Alert.alert(
+            "Registration successful!",
+            `Welcome to Elder Helper ${newUser.first_name}!`
+          );
+          navigation.navigate("Login");
+          return;
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -84,115 +86,105 @@ export default function App({ navigation }) {
   }, [firstName, surname, postcode, phoneNumber, userType]);
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#9DD8E7", flex: 0 }}>
-      <ScrollView
-        contentContainerStyle={{
-          paddingTop: 50,
-          paddingHorizontal: 20,
-        }}
-      >
-        <Text style={{ color: "black", fontSize: 40, fontWeight: "bold" }}>
-          Sign Up
-        </Text>
-        <Text
-          style={{
-            fontSize: 20,
-            lineHeight: 35,
-            marginBottom: 25,
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "android" ? "padding" : "height"}
+    >
+      <SafeAreaView style={{ backgroundColor: "#9DD8E7", flex: 0 }}>
+        <ScrollView
+          contentContainerStyle={{
+            paddingTop: 50,
+            paddingHorizontal: 20,
           }}
         >
-          Enter your details to register
-        </Text>
-        <View>
-          <Text style={style.label}>First Name</Text>
-          <View style={[style.inputContainer]}>
-            <Ionicons style={style.icon} name="person-outline" size={24} />
-            <TextInput
-              style={style.input}
-              onChangeText={onChangeFirstName}
-              value={firstName}
-            />
-          </View>
-        </View>
-        <View>
-          <Text style={style.label}>Surname</Text>
-          <View style={[style.inputContainer]}>
-            <Ionicons
-              style={style.icon}
-              name="person-outline"
-              size={24}
-              color="black"
-            />
-            <TextInput
-              style={style.input}
-              onChangeText={onChangeSurname}
-              value={surname}
-            />
-          </View>
-        </View>
-        <View>
-          <Text style={style.title}>Select your account type:</Text>
-          <View style={style.fixToText}>
-            <Pressable
-              style={style.userbutton}
-              onPress={() => {
-                Alert.alert("You have chosen an Elder account");
-                setUserType(true);
-              }}
-            >
-              <Text style={style.buttontext}>Elder</Text>
-            </Pressable>
-            <Pressable
-              style={style.userbutton}
-              onPress={() => {
-                Alert.alert("You have chosen a Helper account");
-                setUserType(false);
-              }}
-            >
-              <Text style={style.buttontext}>Helper</Text>
-            </Pressable>
-          </View>
-        </View>
-        <View>
-          <Text style={style.label}>Phone number</Text>
-          <View style={[style.inputContainer]}>
-            <Feather style={style.icon} name="phone" size={24} color="black" />
-            <TextInput
-              keyboardType="numeric"
-              style={style.input}
-              onChangeText={onChangePhoneNumber}
-              value={phoneNumber}
-            />
-          </View>
+          <Text style={{ color: "black", fontSize: 40, fontWeight: "bold" }}>
+            Sign Up
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              lineHeight: 35,
+              marginBottom: 25,
+            }}
+          >
+            Enter your details to register
+          </Text>
           <View>
-            <Text>Choose your postcode area</Text>
-          </View>
-          <View style={style.pickerContainer}>
-            <RNPickerSelect
-              onValueChange={(value) => onChangePostcode(value)}
-              items={manchesterPostcodes}
-            />
-          </View>
-          <View>
-            <Text style={style.label}>Password</Text>
+            <Text style={style.label}>First Name</Text>
             <View style={[style.inputContainer]}>
-              <MaterialCommunityIcons
+              <Ionicons style={style.icon} name="person-outline" size={24} />
+              <TextInput
+                style={style.input}
+                onChangeText={onChangeFirstName}
+                value={firstName}
+              />
+            </View>
+          </View>
+          <View>
+            <Text style={style.label}>Surname</Text>
+            <View style={[style.inputContainer]}>
+              <Ionicons
                 style={style.icon}
-                name="onepassword"
+                name="person-outline"
                 size={24}
                 color="black"
               />
-
               <TextInput
-                secureTextEntry={true}
                 style={style.input}
-                onChangeText={onChangePassword}
-                value={password}
+                onChangeText={onChangeSurname}
+                value={surname}
               />
             </View>
-            <Text style={StyleSheet.passwordMessage}>{passwordMsg}</Text>
+          </View>
+          <View>
+            <Text style={style.title}>Select your account type:</Text>
+            <View style={style.fixToText}>
+              <Pressable
+                style={style.userbutton}
+                onPress={() => {
+                  Alert.alert("You have chosen an Elder account");
+                  setUserType(true);
+                }}
+              >
+                <Text style={style.buttontext}>Elder</Text>
+              </Pressable>
+              <Pressable
+                style={style.userbutton}
+                onPress={() => {
+                  Alert.alert("You have chosen a Helper account");
+                  setUserType(false);
+                }}
+              >
+                <Text style={style.buttontext}>Helper</Text>
+              </Pressable>
+            </View>
+          </View>
+          <View>
+            <Text style={style.label}>Phone number</Text>
+            <View style={[style.inputContainer]}>
+              <Feather
+                style={style.icon}
+                name="phone"
+                size={24}
+                color="black"
+              />
+              <TextInput
+                keyboardType="numeric"
+                style={style.input}
+                onChangeText={onChangePhoneNumber}
+                value={phoneNumber}
+              />
+            </View>
             <View>
-              <Text style={style.label}>Confirm Password</Text>
+              <Text>Choose your postcode area</Text>
+            </View>
+            <View style={style.pickerContainer}>
+              <RNPickerSelect
+                onValueChange={(value) => onChangePostcode(value)}
+                items={manchesterPostcodes}
+              />
+            </View>
+            <View>
+              <Text style={style.label}>Password</Text>
               <View style={[style.inputContainer]}>
                 <MaterialCommunityIcons
                   style={style.icon}
@@ -200,29 +192,48 @@ export default function App({ navigation }) {
                   size={24}
                   color="black"
                 />
+
                 <TextInput
                   secureTextEntry={true}
                   style={style.input}
-                  onChangeText={onChangeConfirmPassword}
-                  value={confirmPassword}
+                  onChangeText={onChangePassword}
+                  value={password}
                 />
               </View>
-            </View>
-            <View>
-              <Pressable
-                style={style.button}
-                onPress={() => {
-                  validate();
-                  handleSignup();
-                }}
-              >
-                <Text style={style.text}>Register</Text>
-              </Pressable>
+              <Text style={StyleSheet.passwordMessage}>{passwordMsg}</Text>
+              <View>
+                <Text style={style.label}>Confirm Password</Text>
+                <View style={[style.inputContainer]}>
+                  <MaterialCommunityIcons
+                    style={style.icon}
+                    name="onepassword"
+                    size={24}
+                    color="black"
+                  />
+                  <TextInput
+                    secureTextEntry={true}
+                    style={style.input}
+                    onChangeText={onChangeConfirmPassword}
+                    value={confirmPassword}
+                  />
+                </View>
+              </View>
+              <View>
+                <Pressable
+                  style={style.button}
+                  onPress={() => {
+                    validate();
+                    handleSignup();
+                  }}
+                >
+                  <Text style={style.text}>Register</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -283,7 +294,7 @@ const style = StyleSheet.create({
     backgroundColor: "#0072BB",
     width: 180,
     height: 60,
-    flex: "row",
+    flexDirection: "row",
     alignSelf: "center",
   },
   userbutton: {
@@ -294,7 +305,7 @@ const style = StyleSheet.create({
     backgroundColor: "#0072BB",
     width: 100,
     height: 50,
-    flex: "row",
+    flexDirection: "row",
     alignSelf: "center",
   },
   postcode: {
