@@ -16,7 +16,7 @@ export default function ElderJobs() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [elderJobsList]);
 
   return (
     <View style={styles.container}>
