@@ -1,7 +1,7 @@
 import { getJobsByElder } from "../api";
 import { CurrentUser } from "../UserContext";
 import { useContext, useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 const moment = require("moment");
 
 export default function ElderJobs() {
@@ -28,20 +28,25 @@ export default function ElderJobs() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Your requested jobs</Text>
-      {elderJobsList.map((job) => (
-        <View style={styles.card} key={job.job_id}>
-          <Text style={styles.title}>{job.job_title}</Text>
-          <Text style={styles.description}>{job.job_desc}</Text>
-          <Text style={styles.expiration}>
-            Expires:{" "}
-            {moment(job.expiry_date.slice(0, 10)).endOf("day").fromNow()}
-          </Text>
-          <Text style={styles.status}> Status: {statusMap[job.status_id]}</Text>
-        </View>
-      ))}
-    </View>
+    <ScrollView vertical>
+      <View style={styles.container}>
+        <Text style={styles.text}>Your requested jobs</Text>
+        {elderJobsList.map((job) => (
+          <View style={styles.card} key={job.job_id}>
+            <Text style={styles.title}>{job.job_title}</Text>
+            <Text style={styles.description}>{job.job_desc}</Text>
+            <Text style={styles.expiration}>
+              Expires:{" "}
+              {moment(job.expiry_date.slice(0, 10)).endOf("day").fromNow()}
+            </Text>
+            <Text style={styles.status}>
+              {" "}
+              Status: {statusMap[job.status_id]}
+            </Text>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 

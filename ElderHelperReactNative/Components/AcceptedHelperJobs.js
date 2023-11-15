@@ -1,7 +1,7 @@
 import { getAcceptedHelperJobs } from "../api";
 import { CurrentUser } from "../UserContext";
 import { useContext, useState, useEffect } from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 const moment = require("moment");
 
 export default function ElderJobs() {
@@ -19,26 +19,33 @@ export default function ElderJobs() {
       });
   }, [jobsList]);
 
-  console.log(jobsList);
+  const statusMap = {
+    1: "Requested",
+    2: "Accepted",
+    3: "Completed",
+    4: "Expired",
+  };
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView>
-        <Text style={styles.text}>Your Accepted jobs</Text>
-        {jobsList.map((job, index) => (
-          <View style={styles.card}>
-            <Text style={styles.title}>{job.job_title}</Text>
-            <Text style={styles.description}>{job.job_desc}</Text>
-            <Text>
-              {" "}
-              Expires:{" "}
-              {moment(job.expiry_date.slice(0, 10)).endOf("day").fromNow()}
-            </Text>
-            <Text> Status: {job.status_id}</Text>
-          </View>
-        ))}
-      </SafeAreaView>
-    </View>
+    <ScrollView vertical>
+      <View style={styles.container}>
+        <SafeAreaView>
+          <Text style={styles.text}>Your Accepted jobs</Text>
+          {jobsList.map((job, index) => (
+            <View index={job.job_id} style={styles.card}>
+              <Text style={styles.title}>{job.job_title}</Text>
+              <Text style={styles.description}>{job.job_desc}</Text>
+              <Text>
+                {" "}
+                Expires:{" "}
+                {moment(job.expiry_date.slice(0, 10)).endOf("day").fromNow()}
+              </Text>
+              <Text> Status: {statusMap[job.status_id]}</Text>
+            </View>
+          ))}
+        </SafeAreaView>
+      </View>
+    </ScrollView>
   );
 }
 
