@@ -21,6 +21,7 @@ export default function JobCard({ press, setPress, navigation }) {
         scrollEventThrottle={1}
         contentContainerStyle={styles.endPadding}
       >
+        <View style={styles.container}>
         {!press ? (
           <Text style={styles.noJobsText}>Choose an area</Text>
         ) : jobs.length === 0 ? (
@@ -43,7 +44,8 @@ export default function JobCard({ press, setPress, navigation }) {
               />
             </View>
           ))
-        )}
+          )}
+        </View>
       </ScrollView>
     </GestureHandlerRootView>
   );
@@ -67,7 +69,6 @@ const styles = StyleSheet.create({
     margin: 3,
     flexDirection: "row",
     flexWrap: "wrap",
-    flex: 1,
     justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -77,6 +78,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 6,
     elevation: 5,
+  },
+  container: {
+    flexDirection: "row",
+    overflow: "scroll"
   },
   title: {
     marginTop: 18,
@@ -89,7 +94,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   cardContainer: {
-    flexWrap: "wrap",
+    height: 200,
+    flexWrap: "nowrap",
     bottom: 0,
     marginBottom: 5,
     position: "absolute",
