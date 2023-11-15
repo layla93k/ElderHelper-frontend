@@ -7,6 +7,7 @@ import HomeTabs from "./Components/HomeTabs";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
 import LandingPage from "./Components/LandingPage";
+import JobsList from "./Components/JobsList";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,11 @@ export default function App() {
           <Stack.Screen
             name="Map"
             component={HomeTabs}
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="JobsList"
+            component={JobsList}
             options={{ headerShown: false, gestureEnabled: false }}
           />
         </Stack.Navigator>
