@@ -1,5 +1,5 @@
 
-import { StyleSheet, View, Button, ImageBackground } from "react-native";
+import { StyleSheet, View, Text, ImageBackground, Pressable } from "react-native";
 
 
 export default function LandingPage({ navigation }) {
@@ -8,6 +8,20 @@ export default function LandingPage({ navigation }) {
       <View style={styles.landingContainer}>
         <ImageBackground source={require(`../assets/Logo.png`)} resizeMode="cover" style={styles.image}/>
             <View style={styles.buttonContainer}>
+
+            <Pressable
+                style={styles.button}
+                onPress={() => { navigation.navigate('Login') }}
+              >
+                <Text style={styles.buttontext}>Login</Text>
+              </Pressable>
+              <Pressable
+                style={styles.button}
+                onPress={() => { navigation.navigate('SignUp') }}
+
+              >
+                <Text style={styles.buttontext}>Sign up</Text>
+              </Pressable>
                 <Button color="#08495d" title="  Login  " onPress={() => { navigation.navigate('Login') }}/>
                 <Button color="#08495d" title="Sign Up" onPress={() => { navigation.navigate('SignUp') }}/>
             </View>
@@ -29,5 +43,26 @@ export default function LandingPage({ navigation }) {
         justifyContent: 'space-evenly',
         backgroundColor: '#b3e3e3',
         paddingBottom: 40,
+    },
+
+    button: {
+      padding: 3,
+      marginTop: 10,
+      borderRadius: 10,
+      padding: 5,
+      backgroundColor: "#08495d",
+      width: 100,
+      height: 50,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignSelf: "center",
+      elevation: 5,
+    },
+
+    buttontext: {
+      fontSize: 20,
+      textAlign: "center",
+      paddingTop: 6,
+      color: "#ede7d7",
     },
   })
