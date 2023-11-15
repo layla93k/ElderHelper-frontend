@@ -11,7 +11,7 @@ export default function JobList({navigation }) {
         getJobsUsers().then((jobs) => {
             setJobs(jobs)
         })
-    })
+    }, [])
 
     const pressHandler = (job) => {navigation.navigate("SingleJob", {
         jobData: {job}

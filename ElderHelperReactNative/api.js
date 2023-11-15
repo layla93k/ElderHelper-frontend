@@ -36,8 +36,8 @@ export const deleteJob = async (job_id) => {
 };
 
 export const patchJob = async (updatedJob, job_id) => {
-  console.log(updatedJob);
-  console.log(job_id);
+  // console.log(updatedJob);
+  // console.log(job_id);
   return await request
     .patch(`/jobs/${job_id}`, updatedJob)
     .then(({ data }) => {
@@ -71,7 +71,7 @@ export const updateProfile = async (newProfile, user_id) => {
   return await request
     .patch(`/users/${user_id}`, newProfile)
     .then(({ data }) => {
-      console.log(data);
+      // console.log(data);
       return data;
     });
 };
