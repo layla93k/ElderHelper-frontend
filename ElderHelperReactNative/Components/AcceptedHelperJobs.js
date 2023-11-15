@@ -35,12 +35,14 @@ export default function ElderJobs() {
             <View index={job.job_id} style={styles.card}>
               <Text style={styles.jobTitle}>{job.job_title}</Text>
               <Text style={styles.jobInfo}>{job.job_desc}</Text>
+              <Text style={styles.acceptedStatus}>
+                {statusMap[job.status_id]}
+              </Text>
               <Text style={styles.jobTextExp}>
                 {" "}
                 Expires:{" "}
                 {moment(job.expiry_date.slice(0, 10)).endOf("day").fromNow()}
               </Text>
-              <Text style={styles.acceptedStatus}> Status: {statusMap[job.status_id]}</Text>
             </View>
           ))}
         </SafeAreaView>
@@ -51,25 +53,24 @@ export default function ElderJobs() {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      backgroundColor: "#ede7d7",
-      padding: 8,
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-    },
+    flex: 1,
+    backgroundColor: "#ede7d7",
+    padding: 8,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   text: {
     fontSize: 40,
     color: "#08495d",
     marginBottom: 15,
     textAlign: "center",
-  
   },
   title: {
     fontSize: 35,
     fontWeight: "bold",
   },
- 
+
   card: {
     backgroundColor: "#b3e3e3",
     borderRadius: 15,
@@ -88,7 +89,6 @@ const styles = StyleSheet.create({
     width: 350,
     elevation: 5,
   },
-
 
   jobTitle: {
     color: "#08495d",
