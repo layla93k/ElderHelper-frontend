@@ -48,7 +48,6 @@ function Map({ navigation }) {
         <Pressable style={styles.button} onPress={() => navigation.navigate("JobsList")}>
           <Text style={styles.buttonText} >Job List View</Text>
         </Pressable>
-        {/* <Button title="Job List" onPress={() => navigation.navigate("JobsList")} /> */}
       </View>
       <MapView
         initialRegion={{
@@ -334,37 +333,14 @@ export default function MapStackNav() {
 }
 
 const styles = StyleSheet.create({
-  customMarkerView: {
-    backgroundColor: "white",
-    padding: 0,
-    borderRadius: 50,
-    borderColor: "grey",
-    borderWidth: 1,
-  },
-  markerText: {
-    width: 20,
-    textAlign: 'center',
-    color: "black",
-    fontSize: 8,
-  },
-  map: {
-    flex: 4,
-  },
-  text: {
-    // flex: 1,
-    fontSize: 30,
-    color: "#66B2FF",
-    textAlign: "center",
-    marginTop: 30,
-  },
   view: {
-    flex: 1,
+    paddingTop: 10,
     height: "100%",
     width: "100%",
     backgroundColor: '#ede7d7',
   },
   buttonContainer: {
-    flex: 0.5,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -382,7 +358,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     letterSpacing: 0.25,
     lineHeight: 21,
-  }
+  },
+  map: {
+    flex: 6,
+  },
+  customMarkerView: {
+    backgroundColor: "white",
+    padding: 0,
+    borderRadius: 50,
+    borderColor: "grey",
+    borderWidth: 1,
+  },
+  markerText: {
+    width: 20,
+    textAlign: 'center',
+    color: "black",
+    fontSize: 8,
+  },
 });
 const mapStyle = [
   {
