@@ -89,14 +89,14 @@ export default function App({ navigation }) {
     <KeyboardAvoidingView
       behavior={Platform.OS === "android" ? "padding" : "height"}
     >
-      <SafeAreaView style={{ backgroundColor: "#9DD8E7", flex: 0 }}>
+      <SafeAreaView style={{ backgroundColor: "#EDE7D7", flex: 0 }}>
         <ScrollView
           contentContainerStyle={{
             paddingTop: 50,
             paddingHorizontal: 20,
           }}
         >
-          <Text style={{ color: "black", fontSize: 40, fontWeight: "bold" }}>
+          <Text style={{ color: "#08495d", fontSize: 40, fontWeight: "bold" }}>
             Sign Up
           </Text>
           <Text
@@ -104,6 +104,7 @@ export default function App({ navigation }) {
               fontSize: 20,
               lineHeight: 35,
               marginBottom: 25,
+              color: "#08495d"
             }}
           >
             Enter your details to register
@@ -175,10 +176,11 @@ export default function App({ navigation }) {
               />
             </View>
             <View>
-              <Text>Choose your postcode area</Text>
+              <Text style={style.label}>Choose your postcode area</Text>
             </View>
             <View style={style.pickerContainer}>
               <RNPickerSelect
+              style={style.label}
                 onValueChange={(value) => onChangePostcode(value)}
                 items={manchesterPostcodes}
               />
@@ -241,20 +243,21 @@ const style = StyleSheet.create({
   label: {
     marginVertical: 6,
     fontSize: 14,
+    color: "#08495d",
   },
   text: {
     justifyContent: "center",
     textAlign: "center",
     paddingTop: 10,
     fontSize: 22,
-    color: "white",
+    color: "#ede7d7",
   },
   pickerContainer: {
     padding: 5,
     height: 60,
     marginTop: 5,
     marginBottom: 10,
-    backgroundColor: "#D6EAEE",
+    backgroundColor: "#b3e3e3",
     flexDirection: "row",
     marginHorizontal: 15,
     borderWidth: 0.5,
@@ -263,7 +266,7 @@ const style = StyleSheet.create({
   inputContainer: {
     height: 60,
     marginBottom: 10,
-    backgroundColor: "#D6EAEE",
+    backgroundColor: "#b3e3e3",
     flexDirection: "row",
     marginHorizontal: 15,
     borderWidth: 0.5,
@@ -271,11 +274,12 @@ const style = StyleSheet.create({
   },
   icon: {
     marginLeft: 10,
-    color: "#C0C0C0",
+    color: "08495d",
   },
   title: {
     textAlign: "center",
     marginVertical: 8,
+    color: "#08495d"
   },
   fixToText: {
     flexDirection: "row",
@@ -291,22 +295,25 @@ const style = StyleSheet.create({
     marginTop: 10,
     borderRadius: 10,
     padding: 5,
-    backgroundColor: "#0072BB",
+    backgroundColor: "#08495d",
     width: 180,
     height: 60,
     flexDirection: "row",
     alignSelf: "center",
+    justifyContent: "center",
   },
   userbutton: {
     padding: 3,
     marginTop: 10,
     borderRadius: 10,
     padding: 5,
-    backgroundColor: "#0072BB",
+    backgroundColor: "#08495d",
     width: 100,
     height: 50,
     flexDirection: "row",
+    justifyContent: "center",
     alignSelf: "center",
+    elevation: 5,
   },
   postcode: {
     fontSize: 20,

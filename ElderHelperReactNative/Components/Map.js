@@ -39,6 +39,7 @@ function Map({ navigation }) {
     )}, longitude:${JSON.stringify(location.longitude)}`;
   }
   const handlePress = (title) => {
+    console.log("M1 CLICKED");
     setPress(title);
   };
   
@@ -92,221 +93,221 @@ function Map({ navigation }) {
         })}
         {/* ***MARKERS*** */}
         <>
-          <Marker coordinate={{ latitude: 53.47687, longitude: -2.23527 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M1</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.47918, longitude: -2.24407 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M2</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.48340, longitude: -2.25408 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M3</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.48517, longitude: -2.22768 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M4</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.47718, longitude: -2.29485 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M5</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.49515, longitude: -2.30145 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M6</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.50209, longitude: -2.26894 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M7</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.51356, longitude: -2.23851 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M8</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.52213, longitude: -2.21385 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M9</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.47998, longitude: -2.17960 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M11</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.46603, longitude: -2.20669 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M12</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.45934, longitude: -2.21653 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M13</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.44643, longitude: -2.22567 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M14</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.46685, longitude: -2.24981 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M15</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.45428, longitude: -2.26944 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M16</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.46795, longitude: -2.32247 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M17</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.45961, longitude: -2.16800 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M18</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.43023, longitude: -2.19453 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M19</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.42009, longitude: -2.23859 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M20</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.43321, longitude: -2.27152 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M21</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.38757, longitude: -2.26174 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M22</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.39733, longitude: -2.29220 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M23</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.55658, longitude: -2.20156 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M24</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.52546, longitude: -2.27267 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M25</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.55581, longitude: -2.33183 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M26</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.51615, longitude: -2.33093 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M27</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.50905, longitude: -2.39844 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M28</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.49737, longitude: -2.46110 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M29</Text>
-          </View>
-        </Marker>
-  <Marker coordinate={{ latitude: 53.47791, longitude: -2.38010 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M30</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.42311, longitude: -2.40785 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M31</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.44918, longitude: -2.31293 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M32</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.42225, longitude: -2.32213 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M33</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.45879, longitude: -2.12358 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M34</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.50553, longitude: -2.14813 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M35</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.53205, longitude: -2.42610 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M38</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.50548, longitude: -2.19285 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M40</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.45309, longitude: -2.36918 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M41</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.48640, longitude: -2.14508 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M43</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.44400, longitude: -2.43364 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M44</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.54221, longitude: -2.29727 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M45</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.52439, longitude: -2.49078 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M46</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.47512, longitude: -2.30692 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M50</Text>
-          </View>
-        </Marker>
-        <Marker coordinate={{ latitude: 53.36196, longitude: -2.27887 }}>
-          <View style={styles.customMarkerView}>
-            <Text style={styles.markerText}>M90</Text>
-          </View>
-        </Marker>
+        <Marker coordinate={{ latitude: 53.47487, longitude: -2.23527 }} onPress={(e) => {handlePress("M1")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M1</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.47918, longitude: -2.24407 }} onPress={(e) => {handlePress("M2")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M2</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.48340, longitude: -2.25408 }} onPress={(e) => {handlePress("M3")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M3</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.48517, longitude: -2.23268 }} onPress={(e) => {handlePress("M4")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M4</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.47418, longitude: -2.27385 }} onPress={(e) => {handlePress("M5")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M5</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.49315, longitude: -2.30145 }} onPress={(e) => {handlePress("M6")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M6</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.50209, longitude: -2.26294 }} onPress={(e) => {handlePress("M7")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M7</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.50856, longitude: -2.23551 }} onPress={(e) => {handlePress("M8")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M8</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.52213, longitude: -2.21385 }} onPress={(e) => {handlePress("M9")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M9</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.47598, longitude: -2.18760 }} onPress={(e) => {handlePress("M11")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M11</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.46203, longitude: -2.19969 }} onPress={(e) => {handlePress("M12")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M12</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.46234, longitude: -2.22353 }} onPress={(e) => {handlePress("M13")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M13</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.44343, longitude: -2.22567 }} onPress={(e) => {handlePress("M14")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M14</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.46385, longitude: -2.24981 }} onPress={(e) => {handlePress("M15")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M15</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.45328, longitude: -2.26944 }} onPress={(e) => {handlePress("M16")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M16</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.46395, longitude: -2.31647 }} onPress={(e) => {handlePress("M17")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M17</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.45761, longitude: -2.17000 }} onPress={(e) => {handlePress("M18")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M18</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.43723, longitude: -2.18853 }} onPress={(e) => {handlePress("M19")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M19</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.41509, longitude: -2.23659 }} onPress={(e) => {handlePress("M20")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M20</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.42921, longitude: -2.27252 }} onPress={(e) => {handlePress("M21")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M21</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.37557, longitude: -2.25974 }} onPress={(e) => {handlePress("M22")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M22</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.39533, longitude: -2.28820 }} onPress={(e) => {handlePress("M23")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M23</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.54858, longitude: -2.20156 }} onPress={(e) => {handlePress("M24")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M24</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.52346, longitude: -2.27767 }} onPress={(e) => {handlePress("M25")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M25</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.55581, longitude: -2.33383 }} onPress={(e) => {handlePress("M26")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M26</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.51015, longitude: -2.33093 }} onPress={(e) => {handlePress("M27")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M27</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.50505, longitude: -2.39844 }} onPress={(e) => {handlePress("M28")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M28</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.49037, longitude: -2.45610 }} onPress={(e) => {handlePress("M29")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M29</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.47291, longitude: -2.38810 }} onPress={(e) => {handlePress("M30")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M30</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.41811, longitude: -2.40785 }} onPress={(e) => {handlePress("M31")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M31</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.44018, longitude: -2.31293 }} onPress={(e) => {handlePress("M32")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M32</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.41825, longitude: -2.32213 }} onPress={(e) => {handlePress("M33")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M33</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.45079, longitude: -2.12358 }} onPress={(e) => {handlePress("M34")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M34</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.50053, longitude: -2.14813 }} onPress={(e) => {handlePress("M35")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M35</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.53205, longitude: -2.42610 }} onPress={(e) => {handlePress("M38")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M38</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.49348, longitude: -2.19285 }} onPress={(e) => {handlePress("M40")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M40</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.44809, longitude: -2.36918 }} onPress={(e) => {handlePress("M41")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M41</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.47840, longitude: -2.15308 }} onPress={(e) => {handlePress("M43")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M43</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.44000, longitude: -2.43364 }} onPress={(e) => {handlePress("M44")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M44</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.53521, longitude: -2.31227 }} onPress={(e) => {handlePress("M45")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M45</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.52139, longitude: -2.49078 }} onPress={(e) => {handlePress("M46")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M46</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.47512, longitude: -2.30692 }} onPress={(e) => {handlePress("M50")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M50</Text>
+        </View>
+      </Marker>
+<Marker coordinate={{ latitude: 53.35796, longitude: -2.27887 }} onPress={(e) => {handlePress("M90")}}>
+        <View style={styles.customMarkerView}>
+          <Text style={styles.markerText}>M90</Text>
+        </View>
+      </Marker>
         </>
         {/* ***MARKERS*** */}
       </MapView>
@@ -333,6 +334,30 @@ export default function MapStackNav() {
 }
 
 const styles = StyleSheet.create({
+  customMarkerView: {
+    backgroundColor: "white",
+    padding: 0,
+    borderRadius: 50,
+    borderColor: "grey",
+    borderWidth: 1,
+  },
+  markerText: {
+    width: 20,
+    textAlign: 'center',
+    color: "black",
+    fontSize: 8,
+  },
+  map: {
+    flex: 4,
+    zIndex: -1,
+  },
+  text: {
+    // flex: 1,
+    fontSize: 30,
+    color: "#66B2FF",
+    textAlign: "center",
+    marginTop: 30,
+  },
   view: {
     paddingTop: 10,
     height: "100%",
@@ -457,7 +482,7 @@ const mapStyle = [
     "featureType": "administrative.locality",
     "stylers": [
       {
-        "visibility": "simplified"
+        "visibility": "off"
       }
     ]
   },

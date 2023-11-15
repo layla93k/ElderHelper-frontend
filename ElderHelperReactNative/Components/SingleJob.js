@@ -113,7 +113,7 @@ export default SingleJobNav = ({ route }) => {
     }, [id]);
 
     return (
-      <View>
+      <View style={styles.container}>
         <View style={styles.titleBox}>
           <Text style={styles.title}>{jobWithUser.job_title}</Text>
           <Text style={styles.requestedBy}>
@@ -186,16 +186,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     textAlign: "center",
+    color: "#08495d",
   },
   titleBox: {
     textAlign: "center",
     margin: 15,
     paddingLeft: 20,
+    paddingTop: 10,
     paddingRight: 20,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ffffff",
-    backgroundColor: "white",
+    borderColor: "#b3e3e3",
+    backgroundColor: "#b3e3e3",
   },
   userPic: {
     width: 150,
@@ -209,12 +211,16 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ffffff",
-    backgroundColor: "white",
+    borderColor: "#08495d",
+    backgroundColor: "#08495d",
+    color: "#ede7d7",
   },
   cardContent: {
     flexDirection: "row",
     justifyContent: "space-around",
+    backgroundColor: "#b3e3e3",
+    color: "#08495d",
+    borderRadius: 10,
   },
   userPicView: {
     flex: 1,
@@ -225,8 +231,16 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 30,
     margin: 10,
+
   },
   desc: {
     paddingBottom: 30,
+  },
+
+  container: {
+    flex: 1,
+    backgroundColor: "#ede7d7",
+    padding: 8,
+    flexDirection: "column",
   },
 });
