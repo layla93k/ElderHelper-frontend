@@ -37,6 +37,7 @@ export default function Login({ navigation }) {
   const handleLogin = () => {
     getExistingUser(numberLogin)
       .then(({ user }) => {
+
         if (passwordLogin.length > 7) {
           setUserId(user);
           setUserDoesNotExist(false);
@@ -49,7 +50,7 @@ export default function Login({ navigation }) {
                 onPress: () => {
                   navigation.navigate(userId.is_elder ? "ElderJobs" : "Map");
                 },
-              },
+
             ]
           );
         }
@@ -206,7 +207,7 @@ const style = StyleSheet.create({
     backgroundColor: "#0072BB",
     width: 180,
     height: 60,
-    flex: "row",
+    flexDirection: "row",
     alignSelf: "center",
   },
   text: {
