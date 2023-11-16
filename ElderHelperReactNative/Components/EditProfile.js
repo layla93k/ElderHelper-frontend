@@ -11,7 +11,7 @@ import {
 import { updateProfile } from "../api";
 import { CurrentUser } from "../UserContext";
 
-export default EditProfile = () => {
+export default EditProfile = ({navigation}) => {
   const { userId } = useContext(CurrentUser);
   const [phoneNo, setPhoneNo] = useState(userId.phone_number);
   const [firstName, setFirstName] = useState(userId.first_name);
@@ -36,12 +36,30 @@ export default EditProfile = () => {
         },
         userId.user_id
       )
-        .then((res) => {
-          Alert.alert("Profile updated successfully.");
+        .then(() => {
+          Alert.alert("UPDATED", "Profile updated successfully.",
+          [
+            {
+              text: "OK",
+              onPress: () => {
+                navigation.navigate("My Profile");
+              },
+            },
+          ]
+          );
         })
         .catch((err) => {
           console.log(err);
-          Alert.alert("Something went wrong.");
+          Alert.alert("NOT UPDATED", "Something went wrong.",
+          [
+            {
+              text: "OK",
+              onPress: () => {
+                navigation.navigate("My Profile");
+              },
+            },
+          ]
+          );
         });
     }
   };

@@ -7,20 +7,19 @@ import { deleteJob } from '../api';
 const moment = require("moment");
 
 export default function ElderJobList({navigation }) {
-  const { userId } = useContext(CurrentUser)
+    const { userId } = useContext(CurrentUser)
     const [jobs, setJobs] = useState([])
     
     useEffect(() => {
-        getJobsByElderId(userId.user_id).then((jobs) => {
-            setJobs(jobs)
-        })
-    })
+        getJobsByElderId(userId.user_id)
+          .then((jobs) => setJobs(jobs))
+          .catch((err) => console.log(err));
+    }, [elderJobsList]);
 
-    const pressHandler = (job) => {navigation.navigate("SingleJob", {
-        jobData: {job}
-      })
+    const pressHandler = (job) => {
+        navigation.navigate("SingleJob", {jobData: {job}})
     }
-
+      
     const deleteOwnJobHandler = (job_id) => {
         deleteJob(job_id);
         Alert.alert("Job deleted."); //for deleting jobs as elder
