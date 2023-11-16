@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { UserContext } from "./UserContext";
+import { LogBox } from "react-native";
 
 import HomeTabs from "./Components/HomeTabs";
 import SignUp from "./Components/SignUp";
@@ -10,6 +11,7 @@ import LandingPage from "./Components/LandingPage";
 import JobsList from "./Components/JobsList";
 
 const Stack = createStackNavigator();
+LogBox.ignoreAllLogs();
 
 export default function App() {
   return (
@@ -19,7 +21,8 @@ export default function App() {
           <Stack.Screen
             name="LandingPage"
             component={LandingPage}
-            options={{ headerShown: false }} />
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="Login"
             component={Login}
