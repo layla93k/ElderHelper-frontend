@@ -34,7 +34,7 @@ export default function JobCard({ press, setPress, navigation }) {
         ) : (
           jobs.map((job, index) => (
             <View key={index} style={styles.card}>
-              <Text style={styles.title}>{job.job_title}</Text>
+              <Text style={styles.title} numberOfLines={2}> {job.job_title}</Text>
               <Text style={styles.description} numberOfLines={3}>
                 {job.job_desc}
               </Text>
@@ -66,13 +66,14 @@ const styles = StyleSheet.create({
   card: {
     overflow: "hidden",
     height: 160,
-    width: 140,
-    backgroundColor: "#D6EAEE",
-    borderColor: "#0072BB",
+    width: 160,
+    backgroundColor: "#b3e3e3",
+    borderColor: "#08495d",
     borderWidth: 3,
     borderStyle: "solid",
     borderRadius: 20,
     margin: 3,
+    padding: 5,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     },
   title: {
-    marginTop: 18,
+    marginTop: 10,
     fontSize: 18,
     fontWeight: "bold",
     paddingBottom: 3,
