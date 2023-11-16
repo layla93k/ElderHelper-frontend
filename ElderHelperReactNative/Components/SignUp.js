@@ -242,8 +242,9 @@ export default function App({ navigation }) {
 const style = StyleSheet.create({
   label: {
     marginVertical: 6,
-    fontSize: 14,
+    fontSize: 18,
     color: "#08495d",
+    fontWeight: 'bold',
   },
   text: {
     justifyContent: "center",
@@ -280,6 +281,8 @@ const style = StyleSheet.create({
     textAlign: "center",
     marginVertical: 8,
     color: "#08495d",
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   fixToText: {
     flexDirection: "row",

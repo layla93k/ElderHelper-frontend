@@ -129,10 +129,10 @@ export default SingleJobNav = ({ route }) => {
           </View>
           <View style={styles.cardInfo}>
             <View style={styles.desc}>
-              <Text>{jobWithUser.job_desc}</Text>
+              <Text style={styles.descText}>{jobWithUser.job_desc}</Text>
             </View>
-            <Text>Posted on: {getFormatedDate(jobWithUser.posted_date)}</Text>
-            <Text>Deadline: {getFormatedDate(jobWithUser.expiry_date)}</Text>
+            <Text style={styles.datesText}>Posted on: {getFormatedDate(jobWithUser.posted_date)}</Text>
+            <Text style={styles.datesText}>Deadline: {getFormatedDate(jobWithUser.expiry_date)}</Text>
           </View>
         </View>
 
@@ -147,15 +147,21 @@ export default SingleJobNav = ({ route }) => {
         )}
 
         {jobWithUser.status_id === 2 && (
-          <Button title="Job taken" disabled={true}></Button>
+          <View>
+          <Text style={styles.status}> Job taken </Text>
+          </View>
         )}
 
         {jobWithUser.status_id === 3 && (
-          <Button title="Job complete" disabled={true}></Button>
+          <View>
+          <Text style={styles.status}> Job complete </Text>
+          </View>
         )}
 
         {jobWithUser.status_id === 4 && (
-          <Button title="Job expired" disabled={true}></Button>
+         <View>
+         <Text style={styles.status}> Job exipred </Text>
+         </View>
         )}
 
         {jobWithUser.status_id === 2 &&
@@ -214,6 +220,7 @@ const styles = StyleSheet.create({
     borderColor: "#08495d",
     backgroundColor: "#08495d",
     color: "#ede7d7",
+    fontSize: 18,
   },
   cardContent: {
     flexDirection: "row",
@@ -235,6 +242,7 @@ const styles = StyleSheet.create({
   },
   desc: {
     paddingBottom: 30,
+    fontSize: 18,
   },
 
   container: {
@@ -243,4 +251,25 @@ const styles = StyleSheet.create({
     padding: 8,
     flexDirection: "column",
   },
+
+  descText: {
+    fontSize: 18,
+    color: '#08495d',
+  },
+
+  datesText: {
+    color: '#08495d',
+    fontWeight: 'bold',
+
+  },
+
+  status: {
+  textAlign: 'center',  
+  color: '#08495d',
+  fontWeight: 'bold',
+  paddingTop: 20,
+  fontSize: 18,
+
+  }
+
 });
