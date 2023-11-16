@@ -42,7 +42,7 @@ export default SingleJobNav = ({ route }) => {
               {
                 text: "OK",
                 onPress: () => {
-                  navigation.goBack();
+                  navigation.navigate('Your Jobs');
                 },
               },
             ]);
