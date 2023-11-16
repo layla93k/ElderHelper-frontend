@@ -9,29 +9,26 @@ import {
   Pressable,
   FlatList,
 } from "react-native";
-
-import { useNavigation } from "@react-navigation/native";
-import ChatLive from "./ChatLive";
-
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { CurrentUser } from "../UserContext";
 import { getJobsByElderId } from "../api";
-
 import { AntDesign } from "@expo/vector-icons";
-
-import { socket } from "../utils";
-
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ChatLive from "./ChatLive";
+const Stack = createNativeStackNavigator();
+export default ChatRoomNav = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="ChatRooms" component={ChatRooms} />
+      <Stack.Screen name="ChatLive" component={ChatLive} />
+    </Stack.Navigator>
+  );
+};
 const ChatRooms = ({ navigation }) => {
-  // const [helperId, setHelperId] = useState({
-  //   first_name: "Aiden",
-  //   phoneNumber: "00009012345",
-  //   user_id: 7,
-  // });
-
   const [jobChats, setJobChats] = useState([]);
   const { userId, setUserId } = useContext(CurrentUser);
-
+  // console.log(userId);
   useEffect(() => {
     let user_id = userId.user_id;
     getJobsByElderId(user_id)
@@ -42,19 +39,24 @@ const ChatRooms = ({ navigation }) => {
         console.log(err);
       });
   }, []);
-
   const JobChats = ({ job }) => {
     return (
       <View style={styles.jobContainer}>
-        <Text>Job Title: {job.job_title}</Text>
-        <Text>Expiry Date: {job.expiry_date}</Text>
+        <Text style={styles.job_title}>Chat for: {job.job_title}</Text>
+        <Text style={styles.expiry_date}>
+          Expiry Date: {job.expiry_date.slice(0, 10)}
+        </Text>
         <Pressable style={styles.enterChatButton}>
-          <AntDesign name="rightcircle" size={24} color="black" />
+          <AntDesign
+            name="rightcircle"
+            size={24}
+            color="#0072BB"
+            onPress={() => navigation.navigate("ChatLive")}
+          />
         </Pressable>
       </View>
     );
   };
-
   return (
     <View style={styles.mainWrapper}>
       <View style={styles.topContainer}>
@@ -62,17 +64,8 @@ const ChatRooms = ({ navigation }) => {
           <Text style={styles.heading}>
             Hello {userId.first_name}! Here are your available job chats!
           </Text>
-          <Pressable>
-            <AntDesign
-              name="logout"
-              size={30}
-              colour="#0072BB"
-              onPress={() => navigation.goBack()}
-            ></AntDesign>
-          </Pressable>
         </View>
       </View>
-
       <View style={styles.listContainer}>
         <View>
           {jobChats && jobChats.length > 0 ? (
@@ -83,17 +76,15 @@ const ChatRooms = ({ navigation }) => {
           ) : null}
         </View>
       </View>
-
       <View style={styles.bottomContainer}></View>
     </View>
   );
 };
-
-export default ChatRooms;
-
 const styles = StyleSheet.create({
   mainWrapper: {
     flex: 1,
+    backgroundColor: "#EDE7D7",
+    alignItems: "center",
   },
   topContainer: {
     backgroundColor: "#fff",
@@ -115,16 +106,39 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   jobContainer: {
-    backgroundColor: "#D6EAEE",
+    backgroundColor: "#B3E3E3",
+    borderRadius: 15,
+    borderColor: "#08495D",
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 18,
+    paddingRight: 18,
+    marginLeft: 12,
+    marginRight: 12,
+    marginBottom: 15,
+    width: 350,
+    elevation: 5,
+    backgroundColor: "#B3E3E3",
     padding: 10,
     margin: 10,
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "black",
     flexDirection: "column",
   },
   enterChatButton: {
-    backgroundColor: "#D6EAEE",
+    backgroundColor: "#B3E3E3",
     padding: 2,
+    alignSelf: "center",
+    paddingTop: 5,
+    margin: 5,
+  },
+  job_title: {
+    color: "#08495D",
+    alignSelf: "center",
+    marginBottom: 10,
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  expiry_date: {
+    alignSelf: "center",
   },
 });
