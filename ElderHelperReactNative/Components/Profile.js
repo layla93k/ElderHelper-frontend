@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#08495d",
     width: 180,
     height: 60,
-    flex: "row",
+    flexDirection: "row",
     alignSelf: "center",
   },
   buttonText: {
