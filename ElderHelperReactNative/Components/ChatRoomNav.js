@@ -9,14 +9,11 @@ import {
   Pressable,
   FlatList,
 } from "react-native";
-
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { CurrentUser } from "../UserContext";
 import { getJobsByElderId } from "../api";
-
 import { AntDesign } from "@expo/vector-icons";
-
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ChatLive from "./ChatLive";
 const Stack = createNativeStackNavigator();
@@ -28,12 +25,10 @@ export default ChatRoomNav = () => {
     </Stack.Navigator>
   );
 };
-
 const ChatRooms = ({ navigation }) => {
   const [jobChats, setJobChats] = useState([]);
   const { userId, setUserId } = useContext(CurrentUser);
-  console.log(userId);
-
+  // console.log(userId);
   useEffect(() => {
     let user_id = userId.user_id;
     getJobsByElderId(user_id)
@@ -44,7 +39,6 @@ const ChatRooms = ({ navigation }) => {
         console.log(err);
       });
   }, []);
-
   const JobChats = ({ job }) => {
     return (
       <View style={styles.jobContainer}>
@@ -61,7 +55,6 @@ const ChatRooms = ({ navigation }) => {
       </View>
     );
   };
-
   return (
     <View style={styles.mainWrapper}>
       <View style={styles.topContainer}>
@@ -79,7 +72,6 @@ const ChatRooms = ({ navigation }) => {
           </Pressable>
         </View>
       </View>
-
       <View style={styles.listContainer}>
         <View>
           {jobChats && jobChats.length > 0 ? (
@@ -90,12 +82,10 @@ const ChatRooms = ({ navigation }) => {
           ) : null}
         </View>
       </View>
-
       <View style={styles.bottomContainer}></View>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   mainWrapper: {
     flex: 1,

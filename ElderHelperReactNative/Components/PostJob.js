@@ -16,9 +16,10 @@ import {
 import DatePicker from "react-native-modern-datepicker";
 import { getFormatedDate } from "react-native-modern-datepicker";
 import { CurrentUser } from "../UserContext";
+import ElderJobs from "./ElderJobs";
 const moment = require("moment");
 
-export default PostJob = () => {
+export default PostJob = ({ navigation }) => {
   const today = new Date();
   const tomorrow = getFormatedDate(today.setDate(today.getDate() + 1));
   const [open, setOpen] = useState(false);
@@ -45,7 +46,17 @@ export default PostJob = () => {
         postcode: userId.postcode,
       })
         .then((res) => {
-          setSubmitMessage("Job posted successfully!");
+          Alert.alert("Job posted successfully!", null, [
+            {
+              text: "OK",
+              onPress: () => {
+                navigation.navigate("ElderJobs");
+              },
+            },
+          ]);
+          setTitle("");
+          setDesc("");
+          setConfirmedExpiry("");
         })
         .catch((err) => {
           console.log(err);
@@ -66,6 +77,7 @@ export default PostJob = () => {
           paddingHorizontal: 20,
         }}
       >
+        <Text style={styles.pageTitle}>Post your job</Text>
         <View style={styles.form}>
           <View style={styles.question}>
             <Text style={styles.labels}>Job Title</Text>
@@ -125,7 +137,6 @@ export default PostJob = () => {
               <Text style={styles.buttonText}>Post job</Text>
             </Pressable>
           </View>
-          <Text>{submitMessage}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -137,6 +148,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     alignItems: "left",
+  },
+  pageTitle: {
+    fontWeight: "bold",
+    fontSize: 45,
+    color: "#08495d",
   },
   labels: {
     fontWeight: "bold",

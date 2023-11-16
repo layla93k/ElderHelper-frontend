@@ -1,10 +1,24 @@
 import { getAcceptedHelperJobs } from "../api";
 import { CurrentUser } from "../UserContext";
 import { useContext, useState, useEffect } from "react";
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, Button } from "react-native";
+import SingleJob from "./SingleJob";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator()
 const moment = require("moment");
-
-export default function ElderJobs() {
+export default function AcceptedJobNav() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ElderJobs"
+        component={ElderJobs}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="SingleJob" component={SingleJob} />
+    </Stack.Navigator>
+  );
+}
+function ElderJobs({navigation}) {
   const [jobsList, setJobsList] = useState([]);
   const { userId } = useContext(CurrentUser);
   const actualUserId = userId.user_id;
@@ -43,7 +57,9 @@ export default function ElderJobs() {
                 Expires:{" "}
                 {moment(job.expiry_date.slice(0, 10)).endOf("day").fromNow()}
               </Text>
-            </View>
+              <Button title='view details' onPress={() =>
+              navigation.navigate("SingleJob", { jobData: { job } })} />
+              </View>
           ))}
         </SafeAreaView>
       </View>

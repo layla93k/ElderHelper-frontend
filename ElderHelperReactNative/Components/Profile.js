@@ -1,8 +1,17 @@
 import React, { useContext, useState, useCallback } from "react";
-import { View, Text, StyleSheet, Image, Button, Pressable, Alert, SafeAreaView} from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+  Pressable,
+  Alert,
+  SafeAreaView,
+} from "react-native";
 import { CurrentUser } from "../UserContext";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from "@react-navigation/native";
 import EditProfile from "./EditProfile";
 import { getExistingUser } from "../api";
 
@@ -10,8 +19,7 @@ const Stack = createNativeStackNavigator();
 
 function Profile({ navigation }) {
   const { userId, setUserId } = useContext(CurrentUser);
-  const [user, setUser] = useState({})
-  
+  const [user, setUser] = useState({});
 
   useFocusEffect(
     useCallback(() => {
@@ -44,7 +52,7 @@ function Profile({ navigation }) {
         <Text style={styles.category}>Profile message</Text>
         <Text style={styles.info}>{user.profile_msg}</Text>
       </View>
-      <View>
+      <View style={{ backgroundColor: "#EDE7D7" }}>
         <Pressable
           style={styles.button}
           onPress={() => navigation.navigate("Edit Profile")}
@@ -126,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#08495d",
     width: 180,
     height: 60,
-    flex: "row",
+    flexDirection: "row",
     alignSelf: "center",
   },
   buttonText: {

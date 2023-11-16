@@ -10,27 +10,21 @@ import {
   navigation,
 } from "react-native";
 import { CurrentUser } from "../UserContext";
-
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-
 import { io } from "socket.io-client";
 // import { socket } from "../utils/index.js";
-
 //change here for live
 const socket = io("https://elderhelper.onrender.com/chatting", {
   transports: ["websocket"],
 });
-
 const ChatLive = ({ navigation }) => {
   const { userId } = useContext(CurrentUser);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [chatName, setChatName] = useState(userId.first_name || "");
-
   const sendMessage = (text) => {
     socket.emit("message", { text, userId: userId.user_id });
   };
-
   const handleSendMessage = () => {
     if (inputMessage.trim() !== "") {
       sendMessage(inputMessage);
@@ -42,18 +36,15 @@ const ChatLive = ({ navigation }) => {
       Keyboard.dismiss();
     }
   };
-
   useEffect(() => {
     socket.on("message", (message) => {
       console.log("useEffect Message", message);
       setMessages((prevMessages) => [...prevMessages, message]);
     });
-
     return () => {
       socket.off("message");
     };
   }, []);
-
   return (
     <View style={styles.container}>
       <View style={styles.messageContainer}>
@@ -91,9 +82,7 @@ const ChatLive = ({ navigation }) => {
     </View>
   );
 };
-
 export default ChatLive;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -118,7 +107,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   messageContainer: {
-    flex: 0.98,
+    flex: 0.82,
     backgroundColor: "#fff",
   },
   messageText: {
