@@ -110,10 +110,12 @@ const styles = StyleSheet.create({
   },
   noJobsText: {
     fontSize: 20,
-    backgroundColor: "#D6EAEE",
+    backgroundColor: "#b3e3e3",
     height: 50,
-    borderWidth: 1,
+    borderWidth: 2,
     padding: 5,
     borderRadius: 10,
+    color: "#08495d",
+    fontWeight: "bold",
   },
 });
