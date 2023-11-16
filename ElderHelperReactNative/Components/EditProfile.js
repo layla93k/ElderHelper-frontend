@@ -65,30 +65,30 @@ export default EditProfile = ({navigation}) => {
   };
 
   return (
-    <View>
-      <Text>Edit Profile</Text>
-      <Text>First name:</Text>
+    <View style={styles.background}>
+      <Text style={styles.text}>Edit Profile</Text>
+      <Text style={styles.text}>First name:</Text>
       <TextInput
         placeholder={userId.first_name}
         style={styles.textInput}
         defaultValue={userId.first_name}
         onChangeText={(value) => setFirstName(value)}
       ></TextInput>
-      <Text>Surname:</Text>
+      <Text style={styles.text}>Surname:</Text>
       <TextInput
         placeholder={userId.surname}
         style={styles.textInput}
         defaultValue={userId.surname}
         onChangeText={(value) => setSurname(value)}
       ></TextInput>
-      <Text>Avatar URL:</Text>
+      <Text style={styles.text}>Avatar URL:</Text>
       <TextInput
         placeholder={userId.avatar_url}
         style={styles.textInput}
         defaultValue={userId.avatar_url}
         onChangeText={(value) => setProfileImage(value)}
       ></TextInput>
-      <Text>Profile text:</Text>
+      <Text style={styles.text}>Profile text:</Text>
       <TextInput
         multiline
         placeholder={userId.profile_msg}
@@ -96,14 +96,14 @@ export default EditProfile = ({navigation}) => {
         defaultValue={userId.profile_msg}
         onChangeText={(value) => setProfileText(value)}
       ></TextInput>
-      <Text>Postcode:</Text>
+      <Text style={styles.text}>Postcode:</Text>
       <TextInput
         placeholder={userId.postcode}
         style={styles.textInput}
         defaultValue={userId.postcode}
         onChangeText={(value) => setPostcode(value)}
       ></TextInput>
-      <Text>Phone number:</Text>
+      <Text style={styles.text}>Phone number:</Text>
       <TextInput
         placeholder={userId.phone_number}
         style={styles.textInput}
@@ -133,4 +133,32 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     borderRadius: 5,
   },
+  background: {
+    backgroundColor: '#ede7d7',
+    flex: 1,
+  },
+
+  text: {
+    paddingTop: 15,
+    fontSize: 18,
+   color: '#08495d',
+   fontWeight: 'bold',
+  },
+
+  textInput: {
+backgroundColor: '#b3e3e3',
+height: 40,
+width: 400,
+margin: 10,
+borderWidth: 1,
+
+  },
+
+  bigTextInput: {
+    backgroundColor: '#b3e3e3',
+    height: 100,
+    width: 400,
+    margin: 10,
+    borderWidth: 1,
+      }
 });

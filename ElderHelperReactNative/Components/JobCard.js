@@ -22,30 +22,28 @@ export default function JobCard({ press, setPress, navigation }) {
         contentContainerStyle={styles.endPadding}
       >
         <View style={styles.container}>
-          {!press ? (
-            <Text style={styles.noJobsText}>Choose an area</Text>
-          ) : jobs.length === 0 ? (
-            <Text style={styles.noJobsText}>
-              Sorry, unfortunately there are no jobs in {press}
-            </Text>
-          ) : (
-            jobs.map((job, index) => (
-              <View key={index} style={styles.card}>
-                <Text style={styles.title}>{job.job_title}</Text>
-                <Text style={styles.description} numberOfLines={3}>
-                  {job.job_desc}
-                </Text>
-                <Button
-                  title="more info"
-                  style={styles.button}
-                  onPress={() =>
-                    navigation.navigate("SingleJob", {
-                      jobData: { job },
-                    })
-                  }
-                />
-              </View>
-            ))
+        {!press ? (
+          <Text style={styles.noJobsText}>Choose an area</Text>
+        ) : jobs.length === 0 ? (
+          <Text style={styles.noJobsText}> No jobs in {press}</Text>
+        ) : (
+          jobs.map((job, index) => (
+            <View key={index} style={styles.card}>
+              <Text style={styles.title} numberOfLines={2}> {job.job_title}</Text>
+              <Text style={styles.description} numberOfLines={3}>
+                {job.job_desc}
+              </Text>
+              <Button
+                title="more info"
+                style={styles.button}
+                onPress={() =>
+                  navigation.navigate("SingleJob", {
+                    jobData: { job },
+                  })
+                }
+              />
+            </View>
+          ))
           )}
         </View>
       </ScrollView>
@@ -61,14 +59,16 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   card: {
-    height: "auto",
-    width: 140,
-    backgroundColor: "#D6EAEE",
-    borderColor: "#0072BB",
+    overflow: "hidden",
+    height: 160,
+    width: 160,
+    backgroundColor: "#b3e3e3",
+    borderColor: "#08495d",
     borderWidth: 3,
     borderStyle: "solid",
     borderRadius: 20,
     margin: 3,
+    padding: 5,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     overflow: "scroll",
   },
   title: {
-    marginTop: 18,
+    marginTop: 10,
     fontSize: 18,
     fontWeight: "bold",
     paddingBottom: 3,
