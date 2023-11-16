@@ -104,7 +104,7 @@ export default function App({ navigation }) {
               fontSize: 20,
               lineHeight: 35,
               marginBottom: 25,
-              color: "#08495d"
+              color: "#08495d",
             }}
           >
             Enter your details to register
@@ -180,7 +180,7 @@ export default function App({ navigation }) {
             </View>
             <View style={style.pickerContainer}>
               <RNPickerSelect
-              style={style.label}
+                style={style.label}
                 onValueChange={(value) => onChangePostcode(value)}
                 items={manchesterPostcodes}
               />
