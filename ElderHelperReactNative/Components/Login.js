@@ -214,7 +214,7 @@ const style = StyleSheet.create({
   text: {
     justifyContent: "center",
     textAlign: "center",
-    paddingTop: 10,
+    paddingTop: 15,
     fontSize: 22,
     color: "#ede7d7",
   },

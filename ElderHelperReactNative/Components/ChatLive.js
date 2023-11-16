@@ -7,24 +7,31 @@ import {
   TouchableOpacity,
   FlatList,
   Keyboard,
-  navigation,
+  KeyboardAvoidingView,
 } from "react-native";
 import { CurrentUser } from "../UserContext";
+import { useNavigation } from "@react-navigation/native";
+
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+
 import { io } from "socket.io-client";
 // import { socket } from "../utils/index.js";
+
 //change here for live
 const socket = io("https://elderhelper.onrender.com/chatting", {
   transports: ["websocket"],
 });
+
 const ChatLive = ({ navigation }) => {
   const { userId } = useContext(CurrentUser);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [chatName, setChatName] = useState(userId.first_name || "");
+
   const sendMessage = (text) => {
     socket.emit("message", { text, userId: userId.user_id });
   };
+
   const handleSendMessage = () => {
     if (inputMessage.trim() !== "") {
       sendMessage(inputMessage);
@@ -36,58 +43,67 @@ const ChatLive = ({ navigation }) => {
       Keyboard.dismiss();
     }
   };
+
   useEffect(() => {
     socket.on("message", (message) => {
       console.log("useEffect Message", message);
       setMessages((prevMessages) => [...prevMessages, message]);
     });
+
     return () => {
       socket.off("message");
     };
   }, []);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.messageContainer}>
-        <FlatList
-          data={messages}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <Text
-              style={styles.messageText}
-            >{`${item.chatName}: ${item.message}`}</Text>
-          )}
-        />
-        <View style={styles.form}>
-          <TextInput
-            style={styles.inputMessage}
-            placeholder="Type here"
-            value={inputMessage}
-            onChangeText={(text) => setInputMessage(text)}
+    <KeyboardAvoidingView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <Text style={styles.chatTitle}>Medication Reminder with Aiden</Text>
+        <View style={styles.messageContainer}>
+          <FlatList
+            data={messages}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <Text
+                style={styles.messageText}
+              >{`${item.chatName}: ${item.message}`}</Text>
+            )}
           />
-          <TouchableOpacity
-            style={styles.sendButton}
-            onPress={handleSendMessage}
-          >
-            <Text style={styles.sendButtonText}>Send</Text>
-          </TouchableOpacity>
+          <View style={styles.form}>
+            <TextInput
+              style={styles.inputMessage}
+              placeholder="Type here"
+              value={inputMessage}
+              onChangeText={(text) => setInputMessage(text)}
+            />
+            <TouchableOpacity
+              style={styles.sendButton}
+              onPress={handleSendMessage}
+            >
+              <Text style={styles.sendButtonText}>Send</Text>
+            </TouchableOpacity>
+          </View>
+          <Ionicons
+            style={styles.backToChatRoom}
+            name="return-up-back"
+            size={24}
+            color="#0072BB"
+            onPress={() => navigation.goBack()}
+          />
         </View>
-        <Ionicons
-          style={styles.backToChatRoom}
-          name="return-up-back"
-          size={24}
-          color="#0072BB"
-          onPress={() => navigation.goBack()}
-        />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
+
 export default ChatLive;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
     paddingTop: 20,
+    backgroundColor: "#ede7d7",
   },
   title: {
     fontSize: 24,
@@ -107,12 +123,15 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   messageContainer: {
-    flex: 0.82,
+    flex: 0.88,
     backgroundColor: "#fff",
+    borderRadius: 10,
+    elevation: 5,
   },
   messageText: {
-    paddingVertical: 8,
     fontSize: 16,
+    margin: 8,
+    paddingLeft: 5,
   },
   form: {
     flexDirection: "row",
@@ -145,5 +164,12 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginRight: 25,
     marginBottom: 5,
+  },
+  chatTitle: {
+    alignSelf: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 5,
+    color: "#08495d",
   },
 });
