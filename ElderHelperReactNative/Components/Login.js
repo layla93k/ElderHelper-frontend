@@ -73,7 +73,7 @@ export default function Login({ navigation }) {
       >
         <Text
           style={{
-            color: '#08495d',
+            color: "#08495d",
             fontSize: 40,
             fontWeight: "bold",
             marginTop: 140,
@@ -157,8 +157,7 @@ const style = StyleSheet.create({
   signuplink: {
     marginLeft: 15,
     marginBottom: 10,
-    color: '#08495d',
-    
+    color: "#08495d",
   },
   highlight: {
     fontWeight: "bold",
@@ -166,8 +165,8 @@ const style = StyleSheet.create({
   label: {
     marginVertical: 5,
     fontSize: 15,
-    color: '#08495d',
-    fontWeight: 'bold',
+    color: "#08495d",
+    fontWeight: "bold",
   },
   userDoesntExist: {
     color: "red",
@@ -206,7 +205,7 @@ const style = StyleSheet.create({
     padding: 5,
     backgroundColor: "#08495d",
     width: 180,
-    height: 60,
+    height: 70,
     flexDirection: "row",
     alignSelf: "center",
     justifyContent: "center",
