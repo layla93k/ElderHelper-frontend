@@ -10,7 +10,6 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { CurrentUser } from "../UserContext";
-import { useNavigation } from "@react-navigation/native";
 
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 
@@ -58,7 +57,7 @@ const ChatLive = ({ navigation }) => {
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <Text style={styles.chatTitle}>Medication Reminder with Aiden</Text>
+        <Text style={styles.chatTitle}>Chat about your job with Logan </Text>
         <View style={styles.messageContainer}>
           <FlatList
             data={messages}
@@ -103,7 +102,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     paddingTop: 20,
-    backgroundColor: "#ede7d7",
+
+    backgroundColor: "#EDE7D7",
   },
   title: {
     fontSize: 24,
@@ -170,6 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 5,
-    color: "#08495d",
+    color: "#08495D",
   },
 });
+

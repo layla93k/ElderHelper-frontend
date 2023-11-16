@@ -14,7 +14,6 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { CurrentUser } from "../UserContext";
 import { getJobsByElderId } from "../api";
-
 import { AntDesign } from "@expo/vector-icons";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -44,7 +43,6 @@ const ChatRooms = ({ navigation }) => {
         console.log(err);
       });
   }, []);
-
   const JobChats = ({ job }) => {
     return (
       <View style={styles.jobContainer}>
@@ -63,7 +61,6 @@ const ChatRooms = ({ navigation }) => {
       </View>
     );
   };
-
   return (
     <View style={styles.mainWrapper}>
       <View style={styles.topContainer}>
@@ -73,7 +70,6 @@ const ChatRooms = ({ navigation }) => {
           </Text>
         </View>
       </View>
-
       <View style={styles.listContainer}>
         <View>
           {jobChats && jobChats.length > 0 ? (
@@ -84,7 +80,6 @@ const ChatRooms = ({ navigation }) => {
           ) : null}
         </View>
       </View>
-
       <View style={styles.bottomContainer}></View>
     </View>
   );
@@ -93,7 +88,8 @@ const ChatRooms = ({ navigation }) => {
 const styles = StyleSheet.create({
   mainWrapper: {
     flex: 1,
-    backgroundColor: "#ede7d7",
+    backgroundColor: "#EDE7D7",
+
     alignItems: "center",
   },
   topContainer: {
@@ -116,9 +112,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   jobContainer: {
-    backgroundColor: "#b3e3e3",
+
+    backgroundColor: "#B3E3E3",
     borderRadius: 15,
-    borderColor: "#08495d",
+    borderColor: "#08495D",
+
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 18,
@@ -128,13 +126,16 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: 350,
     elevation: 5,
-    backgroundColor: "#b3e3e3",
+
+    backgroundColor: "#B3E3E3",
+
     padding: 10,
     margin: 10,
     borderRadius: 8,
     flexDirection: "column",
   },
   enterChatButton: {
+    backgroundColor: "#B3E3E3",
     backgroundColor: "#b3e3e3",
     padding: 2,
     alignSelf: "center",
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   job_title: {
-    color: "#08495d",
+    color: "#08495D",
     alignSelf: "center",
     marginBottom: 10,
     fontWeight: "bold",
