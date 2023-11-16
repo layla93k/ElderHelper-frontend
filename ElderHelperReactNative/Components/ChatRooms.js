@@ -9,11 +9,13 @@ import {
   Pressable,
   FlatList,
 } from "react-native";
+
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { CurrentUser } from "../UserContext";
 import { getJobsByElderId } from "../api";
 import { AntDesign } from "@expo/vector-icons";
+
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ChatLive from "./ChatLive";
 const Stack = createNativeStackNavigator();
@@ -25,10 +27,12 @@ export default ChatRoomNav = () => {
     </Stack.Navigator>
   );
 };
+
 const ChatRooms = ({ navigation }) => {
   const [jobChats, setJobChats] = useState([]);
   const { userId, setUserId } = useContext(CurrentUser);
   // console.log(userId);
+
   useEffect(() => {
     let user_id = userId.user_id;
     getJobsByElderId(user_id)
@@ -80,10 +84,12 @@ const ChatRooms = ({ navigation }) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   mainWrapper: {
     flex: 1,
     backgroundColor: "#EDE7D7",
+
     alignItems: "center",
   },
   topContainer: {
@@ -106,9 +112,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   jobContainer: {
+
     backgroundColor: "#B3E3E3",
     borderRadius: 15,
     borderColor: "#08495D",
+
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 18,
@@ -118,7 +126,9 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: 350,
     elevation: 5,
+
     backgroundColor: "#B3E3E3",
+
     padding: 10,
     margin: 10,
     borderRadius: 8,
@@ -126,6 +136,7 @@ const styles = StyleSheet.create({
   },
   enterChatButton: {
     backgroundColor: "#B3E3E3",
+    backgroundColor: "#b3e3e3",
     padding: 2,
     alignSelf: "center",
     paddingTop: 5,
